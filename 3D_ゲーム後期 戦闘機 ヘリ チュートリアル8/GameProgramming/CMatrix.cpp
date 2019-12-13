@@ -1,0 +1,117 @@
+#include "CMatrix.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+CMatrix::CMatrix() {
+	Identity();
+}
+
+CMatrix CMatrix::Identity() {
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			mM[i][j] = 0.0f;
+		}
+	}
+	mM[0][0] = mM[1][1] = mM[2][2] = mM[3][3] = 1.0f;
+	return *this;
+}
+
+CMatrix CMatrix::RotateY(float degree) {
+	float rad = degree / 180.0f * M_PI;
+	Identity();
+	mM[0][0] = mM[2][2] = cosf(rad);
+	mM[0][2] = -sinf(rad);
+	mM[2][0] = -mM[0][2];
+	return *this;
+}
+
+CMatrix CMatrix::RotateX(float degree) {
+	float rad = degree / 180.0f * M_PI;
+	Identity();
+	mM[1][1] = mM[2][2] = cosf(rad);
+	mM[1][2] = sinf(rad);
+	mM[2][1] = -mM[1][2];
+	return *this;
+}
+
+CMatrix CMatrix::RotateZ(float degree) {
+	float rad = degree / 180.0f * M_PI;
+	Identity();
+	mM[0][0] = mM[1][1] = cosf(rad);
+	mM[0][1] = sinf(rad);
+	mM[1][0] = -mM[0][1];
+	return *this;
+}
+
+CMatrix CMatrix::Scale(float x, float y, float z) {
+	Identity();
+	mM[0][0] = x;
+	mM[1][1] = y;
+	mM[2][2] = z;
+	return *this;
+}
+
+CMatrix CMatrix::Translate(float x, float y, float z) {
+	Identity();
+	mM[3][0] = x;
+	mM[3][1] = y;
+	mM[3][2] = z;
+	return *this;
+}
+
+CMatrix CMatrix::Multi(const CMatrix &m) {
+	CMatrix t;
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			t.mM[i][j] = 0.0f;
+			for (int k = 0; k < 4; k++) {
+				t.mM[i][j] += mM[i][k] * m.mM[k][j];
+			}
+		}
+	}
+	return t;
+}
+
+CMatrix CMatrix::operator*(const CMatrix &m) {
+	return Multi(m);
+}
+CMatrix CMatrix::operator-(const CMatrix &m) {
+	return Multi(m);
+}
+#include <stdio.h>
+
+void CMatrix::print() {
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			printf("%10f ", mM[i][j]);
+		}
+		printf("\n");
+	}
+}
+//任意軸回転行列作成
+//Axis(回転角度,X軸ベクトル,Y軸ベクトル,Z軸ベクトル)
+CMatrix CMatrix::Axis(float degree, float x, float y, float z){
+	float len = sqrtf(x*x + y*y + z*z);
+	x /= len;
+	y /= len;
+	z /= len;
+	float rad = degree / 180.0f*M_PI;
+	float sin = sinf(rad);
+	float cos = cosf(rad);
+	mM[0][0] = x*x + (1 - x*x)*cos;
+	mM[0][1] = x*y*(1 - cos) + z*sin;
+	mM[0][2] = x*z*(1 - cos) - y*sin;
+	mM[0][3] = 0.0f;
+	mM[1][0] = x*y*(1 - cos) - z*sin;
+	mM[1][1] = y*y + (1 - y*y)* cos;
+	mM[1][2] = y*z*(1 - cos) + x*sin;
+	mM[1][3] = 0.0f;
+	mM[2][0] = x*z*(1 - cos) + y*sin;
+	mM[2][1] = y*z*(1 - cos) - x*sin;
+	mM[2][2] = z*z + (1 - z*z)*cos;
+	mM[2][3] = 0.0f;
+	mM[3][0] = mM[3][1] = mM[3][2] = 0.0f;
+	mM[3][3] = 1.0f;
+
+	return *this;
+}

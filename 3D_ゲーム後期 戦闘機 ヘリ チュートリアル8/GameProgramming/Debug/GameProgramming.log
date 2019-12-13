@@ -1,0 +1,57 @@
+﻿2019/12/13 11:13:49 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\saboten244\Desktop\ゲーム制作\3D_ゲーム後期 戦闘機 ヘリ チュートリアル8\GameProgramming\GameProgramming.vcxproj" (Build ターゲット)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CSceneGameF22.cpp
+         CSceneGameF22.cpp
+     1>c:\users\saboten244\desktop\ゲーム制作\3d_ゲーム後期 戦闘機 ヘリ チュートリアル8\gameprogramming\ctexture.h(75): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : 'fopen' の宣言を確認してください。
+     1>c:\users\saboten244\desktop\ゲーム制作\3d_ゲーム後期 戦闘機 ヘリ チュートリアル8\gameprogramming\ctexture.h(82): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(112) : 'strcpy' の宣言を確認してください。
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\saboten244\Desktop\ゲーム制作\3D_ゲーム後期 戦闘機 ヘリ チュートリアル8\Debug\GameProgramming.exe" /INCREMENTAL /NOLOGO glew32.lib glfw3.lib glfw3dll.lib glut32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\saboten244\Desktop\ゲーム制作\3D_ゲーム後期 戦闘機 ヘリ チュートリアル8\Debug\GameProgramming.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\saboten244\Desktop\ゲーム制作\3D_ゲーム後期 戦闘機 ヘリ チュートリアル8\Debug\GameProgramming.lib" /MACHINE:X86 Debug\CBox.obj
+         Debug\CBullet.obj
+         Debug\CCamera.obj
+         Debug\CCharacter.obj
+         Debug\CCollider.obj
+         Debug\CCollisionManager.obj
+         Debug\CDummy.obj
+         Debug\CEMissile.obj
+         Debug\CEMissileAH.obj
+         Debug\CEnemy.obj
+         Debug\CEnemyAH.obj
+         Debug\CFire.obj
+         Debug\CFlare.obj
+         Debug\CKey.obj
+         Debug\CMaterial.obj
+         Debug\CMatrix.obj
+         Debug\CMissile.obj
+         Debug\CMissileAH.obj
+         Debug\CModel.obj
+         Debug\CNextScene.obj
+         Debug\CPlayer.obj
+         Debug\CPlayerAH.obj
+         Debug\CRectangle.obj
+         Debug\CSceneGameAH6.obj
+         Debug\CSceneGameF15.obj
+         Debug\CSceneGameF22.obj
+         Debug\CSceneGameAH.obj
+         Debug\CSceneGameSu57.obj
+         Debug\CSceneManager.obj
+         Debug\CSelectAH1.obj
+         Debug\CSelectAH6.obj
+         Debug\CSelectF15.obj
+         Debug\CSelectF22.obj
+         Debug\CSelectSu57.obj
+         Debug\CTaskManager.obj
+         Debug\CText.obj
+         Debug\CTriangle.obj
+         Debug\CTutorial.obj
+         Debug\CVector.obj
+         Debug\Update.obj
+         Debug\main.obj
+         GameProgramming.vcxproj -> C:\Users\saboten244\Desktop\ゲーム制作\3D_ゲーム後期 戦闘機 ヘリ チュートリアル8\Debug\GameProgramming.exe
+     1>プロジェクト "C:\Users\saboten244\Desktop\ゲーム制作\3D_ゲーム後期 戦闘機 ヘリ チュートリアル8\GameProgramming\GameProgramming.vcxproj" (Build ターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:03.49
