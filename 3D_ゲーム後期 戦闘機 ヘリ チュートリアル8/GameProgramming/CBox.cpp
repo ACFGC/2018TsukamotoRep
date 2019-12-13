@@ -1,5 +1,5 @@
 #include "CBox.h"
-
+//Takahashi
 void CBox::Render(const CMatrix &m) {
 	mMaterial.SetMaterial();
 	for (int i = 0; i < 12; i++) {
