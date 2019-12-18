@@ -1,9 +1,12 @@
 #include"CMissile.h"
 #include"CEnemy.h"
 #include"CPlayer.h"
-
+#include"CFire.h"
+#include"CSceneGameF22.h"
 //敵の外部変数を呼ぶ
 extern CEnemy*Enemy;
+//ファイアの外部変数を呼ぶ
+extern CFire *f;
 #define LIFE 600
 //時間
 int Time = 30 * 60;
@@ -114,5 +117,23 @@ void CMissile::Update() {
 	}
 	else {
 		mEnabled = false;
+	}
+}
+void CMissile::Collision(CCollider *m, CCollider *y) {
+	//当たったか判定
+	if (CCollider::Collision(m, y)){
+		switch (y->mpParent->mTaskTag){
+		//当たった相手のタグがEENEMYなら
+		case EENEMY:
+			f = new CFire();
+			f->mPosition = y->mpParent->mPosition;
+			f->SetTexture("fire.tga");
+			TaskManager.Add(f);
+			//自分を消す
+			m->mpParent->mEnabled = false;
+			//当たった相手を消す
+			//y->mpParent->mEnabled = false;
+			break;
+		}
 	}
 }

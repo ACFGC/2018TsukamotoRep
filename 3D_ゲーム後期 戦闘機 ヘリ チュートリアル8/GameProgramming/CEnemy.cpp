@@ -121,7 +121,7 @@ void CEnemy::Collision(CCollider *m, CCollider *y) {
 				//©•ª‚ğÁ‚·
 				m->mpParent->mEnabled = false;
 				//“–‚½‚Á‚½‘Šè‚ğÁ‚·
-				y->mpParent->mEnabled = false;
+				//y->mpParent->mEnabled = false;
 			}
 			//©•ª‚ğÁ‚·
 			//m->mpParent->mEnabled = false;
