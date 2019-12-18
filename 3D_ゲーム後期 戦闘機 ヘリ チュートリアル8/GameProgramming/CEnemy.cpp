@@ -29,6 +29,7 @@ CEnemy::CEnemy(CModel *model, float px, float py, float pz, float rx, float ry, 
 	mEFlareInterval = EFLAREINTERVAL_E;
 	//タグを設定
 	mTaskTag = EENEMY;
+	HP = 100.0f;
 	//ミサイルのモデルを読み込む
 	mAAM.Load("AAM.obj", "AAM.mtl");
 }
@@ -90,9 +91,9 @@ void CEnemy::Update() {
 		EATime = 100;
 	}
 	//ミサイルクールタイム
-	/*if (mEMissileInterval>0){
+	if (mEMissileInterval>0){
 	mEMissileInterval--;
-	}*/
+	}
 	if (mEMissileInterval <= 0){
 		mEMissileInterval = mEMissileINTERVAL_E;
 		em = new CEMissile(&mAAM, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
@@ -115,10 +116,17 @@ void CEnemy::Collision(CCollider *m, CCollider *y) {
 			f->mPosition = y->mpParent->mPosition;
 			f->SetTexture("fire.tga");
 			TaskManager.Add(f);
+			HP -= 40.0f;
+			if (HP <= 0.0f){
+				//自分を消す
+				m->mpParent->mEnabled = false;
+				//当たった相手を消す
+				y->mpParent->mEnabled = false;
+			}
 			//自分を消す
-			m->mpParent->mEnabled = false;
+			//m->mpParent->mEnabled = false;
 			//当たった相手を消す
-			y->mpParent->mEnabled = false;
+			//y->mpParent->mEnabled = false;
 			break;
 		}
 	}

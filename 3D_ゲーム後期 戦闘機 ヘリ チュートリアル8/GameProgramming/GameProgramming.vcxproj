@@ -95,6 +95,7 @@
     <ClCompile Include="CEnemyAH.cpp" />
     <ClCompile Include="CFire.cpp" />
     <ClCompile Include="CFlare.cpp" />
+    <ClCompile Include="CHpBar.cpp" />
     <ClCompile Include="CKey.cpp" />
     <ClCompile Include="CMaterial.cpp" />
     <ClCompile Include="CMatrix.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="CEnemyAH.h" />
     <ClInclude Include="CFire.h" />
     <ClInclude Include="CFlare.h" />
+    <ClInclude Include="CHpBar.h" />
     <ClInclude Include="CKey.h" />
     <ClInclude Include="CMaterial.h" />
     <ClInclude Include="CMatrix.h" />

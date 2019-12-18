@@ -32,6 +32,7 @@ public:
 	CModel mAH6;
 	CModel mC5;
 	CModel mSu57;
+	CModel mAAM;
 	//カメラ
 	CCamera mCamera;
 	//プレイヤー

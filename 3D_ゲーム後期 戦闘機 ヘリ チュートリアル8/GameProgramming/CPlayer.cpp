@@ -27,6 +27,9 @@ CPlayer::CPlayer() {
 	mTaskTag = EPLAYER;
 	//ミサイルのモデルを読み込む
 	mAAM.Load("AAM.obj", "AAM.mtl");
+	//HP = 100;
+	/*mHpBar.Init(this, CVector(0.0f, -35.0f,0.0f),
+		CVector(50.0f, 8.0f,0.0f),100,100);*/
 }
 
 CPlayer::~CPlayer() {
@@ -123,9 +126,9 @@ void CPlayer::Update() {
 			m = new CMissile(&mAAM, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 3.0f, 3.0f, 3.0f);
 			m->mTaskTag = EPLAYERBULLET;
 			m->mPosition = mPosition;
-			m->mRotation = mRotation;
+			//m->mRotation = mRotation;
 			//回転行列を設定
-			//m->mMatrixRotation = mMatrixRotation;
+			m->mMatrixRotation = mMatrixRotation;
 			TaskManager.Add(m);
 		}
 	}
@@ -172,6 +175,7 @@ void CPlayer::Update() {
 			TaskManager.Add(Flare);
 		}
 	}
+	//mHpBar.Update();
 	//CCharacter::Update();
 }
 
@@ -184,6 +188,21 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 			f->mPosition = y->mpParent->mPosition;
 			f->SetTexture("fire.tga");
 			TaskManager.Add(f);
+			/*mHpBar.mHp -= 40.0f;
+			if (mHpBar.mHp <= 0.0f){
+			mEnabled = false;
+			}*/
+			/*HP -= 40;
+			if (HP <= 0){
+				//自分を消す
+				m->mpParent->mEnabled = false;
+				//当たった相手を消す
+				y->mpParent->mEnabled = false;
+			}*/
+			//自分を消す
+			m->mpParent->mEnabled = false;
+			//当たった相手を消す
+			y->mpParent->mEnabled = false;
 			break;
 		}
 	}

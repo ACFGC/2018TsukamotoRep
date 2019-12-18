@@ -13,6 +13,9 @@ CCollisionManager CollisionManager;
 CEnemy*Enemy;
 //テキストの外部変数を呼ぶ
 CText*mText;
+//時間
+/*int mTime = 30 * 60;
+#define Time 300*/
 void CSceneGameF22::Init() {
 	//シーン設定
 	mScene = EGAMEF22;
@@ -25,14 +28,16 @@ void CSceneGameF22::Init() {
 	mSu57.Load("Su57.obj", "Su57.mtl");
 	mAH6.Load("AH6.obj", "AH6.mtl");
 	mC5.Load("C5.obj", "C5.mtl");
+	mAAM.Load("AAM.obj", "AAM.mtl");
 	//モデル割り当て
-	mPlayer.Init(&mModel, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	mPlayer.Init(&mModel, 0.0f, 5.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	Enemy = new CEnemy(&mF15, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	Enemy = new CEnemy(&mSu57, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	new CDummy(&mSu57, 4.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.19f, 0.19f, 0.19f);
 	new CDummy(&mF15, 8.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	new CDummy(&mF22, 12.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.09f, 0.09f, 0.09f);
 	new CDummy(&mC5, 16.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.1f, 0.1f, 0.1f);
+	new CDummy(&mAAM, 18.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.1f, 1.1f, 1.1f);
 	
 }
 
@@ -42,7 +47,14 @@ void CSceneGameF22::Update() {
 	TaskManager.Update();
 	CollisionManager.Update();
 	TaskManager.Delete();
-
+	/*if (mTime > 0){
+		mTime--;
+	}
+	if (mTime == 0){
+		mTime = Time;
+		Enemy = new CEnemy(&mF15, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+		Enemy = new CEnemy(&mSu57, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	}*/
 	//カメラ設定
 	mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -2.5f) * mPlayer.mMatrixRotation;
 	//mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -5.0f) * mPlayer.mMatrixRotation;//F22
@@ -78,9 +90,13 @@ void CSceneGameF22::Update() {
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);	//描画色
 
 	//文字列設定
-	//mText->DrawString("M:Missile W:PitUP A:< S:PitDOWN D:>", -350, 250, 7, 15);//文字列描画
-	mText->DrawString("M Key:Missile W:PitUP A:< S:PitDOWN D:>", -350, -150, 7, 15);//文字列描画
-	//"SPACE:Missile W:PitUP A:LeftROLL S:PitDOWN D:RightROLL"
+	mText->DrawString("SCORE", -350, 270, 7, 15);//文字列描画
+	if (CKey::Push('Q')){
+		mText->DrawString("M Key:Missile         W Key:PitchDown S Key:PitchUp", -350, -130, 7, 15);//文字列描画
+		mText->DrawString("A Key:L Roll  D Key:R Roll", -350, -170, 7, 15);//文字列描画
+		mText->DrawString("I Key:Throttle UP  K Key:Throttle Down", -350, -210, 7, 15);//文字列描画
+		mText->DrawString("J Key:L Yaw  K Key:R Yaw", -350, -250, 7, 15);//文字列描画
+	}//"SPACE:Missile W:PitUP A:LeftROLL S:PitDOWN D:RightROLL"
 	glEnable(GL_LIGHTING);	//ライド有効
 
 	glPopMatrix();	//モデルビュー描画行列を戻す

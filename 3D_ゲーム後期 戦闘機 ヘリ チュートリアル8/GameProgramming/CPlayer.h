@@ -5,6 +5,7 @@
 #include "CCollider.h"
 #include"CModel.h"
 #include"CMissile.h"
+#include"CHpBar.h"
 class CPlayer : public CCharacter {
 public:
 	static CPlayer *mpPlayer;
@@ -16,6 +17,8 @@ public:
 	int mFlareInterval;
 	//“–‚½‚è”»’è
 	CCollider mPCollider;
+	//int HP;
+	//CHpBar mHpBar;
 	void Update();
 	void  Collision(CCollider *m, CCollider *y);
 };
