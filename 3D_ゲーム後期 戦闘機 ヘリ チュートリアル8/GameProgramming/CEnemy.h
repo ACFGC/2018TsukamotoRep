@@ -13,6 +13,7 @@ public:
 	int mEMissileInterval;
 	//フレアクールタイム
 	int mEFlareInterval;
+	//体力
 	float HP;
 	void Update();
 	void Collision(CCollider *m, CCollider *y);

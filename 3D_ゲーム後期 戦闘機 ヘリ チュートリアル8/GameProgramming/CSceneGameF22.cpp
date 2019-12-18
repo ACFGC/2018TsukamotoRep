@@ -14,13 +14,13 @@ CEnemy*Enemy;
 //テキストの外部変数を呼ぶ
 CText*mText;
 //時間
-/*int mTime = 30 * 60;
-#define Time 300*/
+int mTime = 30 * 60;
+#define Time 100
 void CSceneGameF22::Init() {
 	//シーン設定
 	mScene = EGAMEF22;
 	//航空機(モデル)読み込み
-	mModel.Load("F15.obj", "F15.mtl");
+	mModel.Load("F22.obj", "F22.mtl");
 	mSky.Load("sky.obj", "sky.mtl");
 	mF16.Load("f16.obj", "f16.mtl");
 	mF15.Load("F15.obj", "F15.mtl");
@@ -33,12 +33,13 @@ void CSceneGameF22::Init() {
 	mPlayer.Init(&mModel, 0.0f, 5.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	Enemy = new CEnemy(&mF15, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	Enemy = new CEnemy(&mSu57, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	/*
 	new CDummy(&mSu57, 4.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.19f, 0.19f, 0.19f);
 	new CDummy(&mF15, 8.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	new CDummy(&mF22, 12.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.09f, 0.09f, 0.09f);
+	new CDummy(&mF22, 12.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	new CDummy(&mC5, 16.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.1f, 0.1f, 0.1f);
 	new CDummy(&mAAM, 18.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.1f, 1.1f, 1.1f);
-	
+	*/
 }
 
 void CSceneGameF22::Update() {
@@ -50,20 +51,27 @@ void CSceneGameF22::Update() {
 	/*if (mTime > 0){
 		mTime--;
 	}
-	if (mTime == 0){
+	if (mTime <= 0){
+		mTime = Time;
+	}
+	if (mTime <= 0&&Enemy->mEnabled==false){
 		mTime = Time;
 		Enemy = new CEnemy(&mF15, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 		Enemy = new CEnemy(&mSu57, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	}*/
 	//カメラ設定
-	mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -2.5f) * mPlayer.mMatrixRotation;
-	//mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -5.0f) * mPlayer.mMatrixRotation;//F22
+	mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -2.7f) * mPlayer.mMatrixRotation;
+	//mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -2.7f) * mPlayer.mMatrixRotation;//F22
 	//mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -2.5f) * mPlayer.mMatrixRotation;//F15
+	//mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -2.7f) * mPlayer.mMatrixRotation;//Su57
 	mCamera.mCenter = mPlayer.mPosition;
 	mCamera.mUp = CVector(0.0f, 1.0f, 0.0f) * mPlayer.mMatrixRotation;
 	//後ろを向く
 	if (CKey::Push('C')) {
-		mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.8f, -3.0f) * mPlayer.mMatrixRotation;
+		mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.6f, -2.7f) * mPlayer.mMatrixRotation;
+		//mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.6f, -2.7f) * mPlayer.mMatrixRotation;//F22
+		//mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.6f, -3.0f) * mPlayer.mMatrixRotation;//F15
+		//mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.6f, -3.3f) * mPlayer.mMatrixRotation;//Su57
 	}
 	if (CKey::Once(VK_BACK)){
 		//タイトルに戻る

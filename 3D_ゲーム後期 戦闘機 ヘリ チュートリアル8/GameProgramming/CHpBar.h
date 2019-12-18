@@ -1,10 +1,10 @@
 #ifndef CHPBAR
 #define CHPBAR
-
+/*
 #include "CCharacter.h"
 #include "CBox.h"
 #include "CCollider.h"
-/*class CHpBar :public CCharacter{
+class CHpBar :public CCharacter{
 public:
 	CVector mSize;
 	float mMax;

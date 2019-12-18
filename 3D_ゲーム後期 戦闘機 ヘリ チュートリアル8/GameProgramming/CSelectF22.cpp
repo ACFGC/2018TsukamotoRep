@@ -6,7 +6,7 @@ void CSelectF22::Init(){
 	CText::mFont.Load("font.tga");
 	mScene = ESELECTF22;
 	mF22.Load("F22.obj", "F22.mtl");
-	mSDummy = new CDummy(&mF22, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f);
+	mSDummy = new CDummy(&mF22, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.9f, 0.9f, 0.9f);
 }
 //更新処理のオーバーライド
 void CSelectF22::Update(){

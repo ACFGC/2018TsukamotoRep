@@ -5,12 +5,13 @@
 void CHpBar::SetHpBar(CCharacter*task,
 	const CVector&pos, const CVector &size,
 	float max, float hp){
-	SetVertex(0.0f, size.x, 0.0f, size.y);
-	mPosition.x = pos.x + -size.x / 2.0f;
-	mPosition.y = pos.y;
+	//SetVertex(0.0f, size.x, 0.0f, size.y);
+	mPosition.mX = pos.mX + -size.mX / 2.0f;
+	mPosition.mY = pos.mY;
+	mPosition.mZ = pos.mZ;
 	mMax = max;
 	mHp = hp;
-	mBar.SetVertex(0.0f, size.x, 0.0f, size.y);
+	//mBar.SetVertex(0.0f, size.x, 0.0f, size.y);
 	mBar.mScale.mX = mHp / mMax;
 	mpTask = task;
 }
@@ -34,6 +35,12 @@ void CHpBar::Update(){
 	}
 }
 void CHpBar::Render(){
-	CCharacter::Render();
-	mBar.Render();
+	float c[] = { 1.0f, 1.0f, 0.0f, 1.0f };
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, c);
+
+	mT[0].Render(mMatrix);
+	mT[1].Render(mMatrix);
+	//mBox.Render(mMatrix);
+	//CCharacter::Render();
+	//mBar.Render();
 }*/

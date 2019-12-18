@@ -56,10 +56,16 @@ void CBullet::Render() {
 	//mBox.Render(mMatrix);
 }
 void CBullet::Collision(CCollider *m, CCollider *y) {
-		/*switch (y->mpParent->mTaskTag){
+	//“–‚½‚Á‚½‚©”»’è
+	if (CCollider::Collision(m, y)){
+		switch (y->mpParent->mTaskTag){
+			//“–‚½‚Á‚½‘Šè‚Ìƒ^ƒO‚ªEENEMY‚È‚ç
 		case EENEMY:
-			y->mpParent->mEnabled = false;
-			m->mEnabled = false;
+			//©•ª‚ğÁ‚·
+			m->mpParent->mEnabled = false;
+			//“–‚½‚Á‚½‘Šè‚ğÁ‚·
+			//y->mpParent->mEnabled = false;
 			break;
-	    }*/
+		}
+	}
 }

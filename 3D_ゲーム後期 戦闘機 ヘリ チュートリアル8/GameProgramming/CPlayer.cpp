@@ -28,6 +28,13 @@ CPlayer::CPlayer() {
 	//ミサイルのモデルを読み込む
 	mAAM.Load("AAM.obj", "AAM.mtl");
 	//HP = 100;
+	/*CHpBar*hp = new CHpBar();
+	hp->SetHpBar(this, CVector(0.0f,0.0f,0.0f),CVector(0.0f,0.0f,0.0f), 100.0f, 100.0f);
+	hp->SetDiffuse(1.0f, 1.0f, 0.0f, 1.0f);
+	hp->mPosition = mPosition;
+	//回転行列を設定
+	hp->mMatrixRotation = mMatrixRotation;
+	//TaskManager.Add(hp);*/
 	/*mHpBar.Init(this, CVector(0.0f, -35.0f,0.0f),
 		CVector(50.0f, 8.0f,0.0f),100,100);*/
 }
