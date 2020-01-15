@@ -3,7 +3,7 @@
 #include"CSceneGameF22.h"
 #include"CFire.h"
 #include"CFlare.h"
-
+#include"CHpBar.h"
 #define VELOCITY_ENEMY 0.3f
 //ミサイルクールタイム
 #define mEMissileINTERVAL_E 100
@@ -19,7 +19,8 @@ CModel mAAM;
 extern CFire *f;
 //時間
 int EATime = 100 * 60;
-
+//HPバーの外部変数を作る
+CHpBar HP;
 CEnemy::CEnemy(CModel *model, float px, float py, float pz, float rx, float ry, float rz, float sx, float sy, float sz) {
 	Init(model, px, py, pz, rx, ry, rz, sx, sy, sz);
 	TaskManager.Add(this);
@@ -30,7 +31,9 @@ CEnemy::CEnemy(CModel *model, float px, float py, float pz, float rx, float ry, 
 	//タグを設定
 	mTaskTag = EENEMY;
 	//体力を100に設定
-	HP = 100.0f;
+	//HP = 100.0f;
+	//HPバーの設定を呼ぶ
+	HP.Init();
 	//ミサイルのモデルを読み込む
 	mAAM.Load("AAM.obj", "AAM.mtl");
 }
@@ -113,8 +116,8 @@ void CEnemy::Collision(CCollider *m, CCollider *y) {
 		switch (y->mpParent->mTaskTag){
 		//当たった相手のタグがEPLAYERBULLETなら
 		case EPLAYERBULLET:
-			HP -= 40.0f;
-			if (HP <= 0.0f){
+			HP.HP -= 40.0f;
+			if (HP.HP <= 0.0f){
 				f = new CFire();
 				f->mPosition = y->mpParent->mPosition;
 				f->SetTexture("fire.tga");

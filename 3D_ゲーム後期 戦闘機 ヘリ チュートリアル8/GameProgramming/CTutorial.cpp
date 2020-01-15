@@ -1,25 +1,32 @@
-#include"CTutorial.h"
+#include "CTutorial.h"
 #include "glut.h"
 #include "CTriangle.h"
 #include "CKey.h"
 #include "CEnemy.h"
 #include "CFire.h"
 #include <math.h>
+//タスクマネージャーの外部変数を呼ぶ
+extern CTaskManager TaskManager;
+//コリジョンマネージャーの外部変数を呼ぶ
+extern CCollisionManager CollisionManager;
 //敵の外部変数を呼ぶ
 extern CEnemy*Enemy;
 //テキストの外部変数を呼ぶ
 extern CText*mText;
-CTutorial*mTutorial;
+//時間
+//int mTime = 30 * 60;
+#define Time 100
 void CTutorial::Init() {
 	//シーン設定
 	mScene = ETUTORIAL;
 	//航空機(モデル)読み込み
-	mModel.Load("F15C.obj", "F15C.mtl");
+	mModel.Load("F15.obj", "F15.mtl");
 	mSky.Load("sky.obj", "sky.mtl");
 	mC5.Load("C5.obj", "C5.mtl");
 	//モデル割り当て
-	mPlayer.Init(&mModel, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.4f, 0.4f, 0.4f);
-	new CDummy(&mC5, 16.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.1f, 0.1f, 0.1f);
+	mPlayer.Init(&mModel, 0.0f, 5.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	Enemy = new CEnemy(&mC5, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	Enemy = new CEnemy(&mC5, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 }
 
 void CTutorial::Update() {
@@ -28,14 +35,24 @@ void CTutorial::Update() {
 	TaskManager.Update();
 	CollisionManager.Update();
 	TaskManager.Delete();
-
+	/*if (mTime > 0){
+	mTime--;
+	}
+	if (mTime <= 0){
+	mTime = Time;
+	}
+	if (mTime <= 0&&Enemy->mEnabled==false){
+	mTime = Time;
+	Enemy = new CEnemy(&mF15, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	Enemy = new CEnemy(&mSu57, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	}*/
 	//カメラ設定
-	mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 2.0f, -8.0f) * mPlayer.mMatrixRotation;
+	mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -2.5f) * mPlayer.mMatrixRotation;
 	mCamera.mCenter = mPlayer.mPosition;
 	mCamera.mUp = CVector(0.0f, 1.0f, 0.0f) * mPlayer.mMatrixRotation;
 	//後ろを向く
 	if (CKey::Push('C')) {
-		mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -2.0f, -8.0f) * mPlayer.mMatrixRotation;
+		mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.6f, -3.0f) * mPlayer.mMatrixRotation;
 	}
 	if (CKey::Once(VK_BACK)){
 		//タイトルに戻る
@@ -62,11 +79,26 @@ void CTutorial::Update() {
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);	//描画色
 
 	//文字列設定
-	mText->DrawString("M:Missile W:PitUP A:< S:PitDOWN D:>", -350, 250, 10, 20);//文字列描画
-	if (CKey::Once('H')){
-		//mText->DrawString("AAAAA", -250, 150, 10, 20);//文字列描画
-	}
-	//"SPACE:Missile W:PitUP A:LeftROLL S:PitDOWN D:RightROLL"
+	//文字列描画
+	//操作表示
+	if (CKey::Push('Q')){
+		//前後入力
+		mText->DrawString("K Key:Throttle Down", -350, -150, 7, 15);
+		mText->DrawString("I Key:Throttle UP", -350, -100, 7, 15);
+		//上下入力
+		mText->DrawString("W Key:PitchDown", -100, -200, 7, 15);
+		mText->DrawString("S Key:PitchUp", -100, 200, 7, 15);
+		//右入力
+		mText->DrawString("J Key:Left Yaw", -350, 100, 7, 15);
+		mText->DrawString("A Key:Left Roll", -350, 50, 7, 15);
+		//左入力
+		mText->DrawString("L Key:Right Yaw", 170, 100, 7, 15);
+		mText->DrawString("D Key:Right Roll", 170, 50, 7, 15);
+		//攻撃入力
+		mText->DrawString("SPACE Key:Cannon", 170, -150, 7, 15);
+		mText->DrawString("M Key:Missile", 170, -100, 7, 15);
+		//mText->DrawString("I Key:Throttle UP  K Key:Throttle Down", -350, -210, 7, 15);//文字列描画
+	}//"SPACE:Missile W:PitUP A:LeftROLL S:PitDOWN D:RightROLL"
 	glEnable(GL_LIGHTING);	//ライド有効
 
 	glPopMatrix();	//モデルビュー描画行列を戻す
@@ -76,6 +108,7 @@ void CTutorial::Update() {
 	//行列をモデルビューモードへ変更
 	glMatrixMode(GL_MODELVIEW);
 }
+
 //デストラクタ
 CTutorial::~CTutorial() {
 	TaskManager.Destory();

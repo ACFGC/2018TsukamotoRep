@@ -5,6 +5,7 @@
 #include"CMissile.h"
 #include"CFlare.h"
 #include"CFire.h"
+#include"CHpBar.h"
 //ミサイルクールタイム(時間)
 #define FIREINTERVAL_E 100
 //フレアクールタイム(時間)
@@ -17,6 +18,8 @@ CMissile *m;
 CFire *f;
 //ミサイル(モデル)の外部変数を呼ぶ
 extern CModel mAAM;
+//HPバーの外部変数を呼ぶ
+extern CHpBar HP;
 CPlayer *CPlayer::mpPlayer = 0;
 
 CPlayer::CPlayer() {
@@ -28,15 +31,7 @@ CPlayer::CPlayer() {
 	//ミサイルのモデルを読み込む
 	mAAM.Load("AAM.obj", "AAM.mtl");
 	//HP = 100;
-	/*CHpBar*hp = new CHpBar();
-	hp->SetHpBar(this, CVector(0.0f,0.0f,0.0f),CVector(0.0f,0.0f,0.0f), 100.0f, 100.0f);
-	hp->SetDiffuse(1.0f, 1.0f, 0.0f, 1.0f);
-	hp->mPosition = mPosition;
-	//回転行列を設定
-	hp->mMatrixRotation = mMatrixRotation;
-	//TaskManager.Add(hp);*/
-	/*mHpBar.Init(this, CVector(0.0f, -35.0f,0.0f),
-		CVector(50.0f, 8.0f,0.0f),100,100);*/
+	HP.Init();
 }
 
 CPlayer::~CPlayer() {
@@ -195,10 +190,13 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 			f->mPosition = y->mpParent->mPosition;
 			f->SetTexture("fire.tga");
 			TaskManager.Add(f);
-			/*mHpBar.mHp -= 40.0f;
-			if (mHpBar.mHp <= 0.0f){
-			mEnabled = false;
-			}*/
+			HP.HP -= 40.0f;
+			if (HP.HP <= 0.0f){
+				//自分を消す
+				m->mpParent->mEnabled = false;
+				//当たった相手を消す
+				//y->mpParent->mEnabled = false;
+			}
 			/*HP -= 40;
 			if (HP <= 0){
 				//自分を消す
@@ -206,10 +204,6 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 				//当たった相手を消す
 				y->mpParent->mEnabled = false;
 			}*/
-			//自分を消す
-			m->mpParent->mEnabled = false;
-			//当たった相手を消す
-			y->mpParent->mEnabled = false;
 			break;
 		}
 	}

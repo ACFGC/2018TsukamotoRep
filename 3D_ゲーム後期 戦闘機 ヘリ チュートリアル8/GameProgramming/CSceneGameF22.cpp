@@ -60,7 +60,7 @@ void CSceneGameF22::Update() {
 		Enemy = new CEnemy(&mSu57, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	}*/
 	//ÉJÉÅÉâê›íË
-	mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -2.7f) * mPlayer.mMatrixRotation;
+	mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 2.0f, -6.0f) * mPlayer.mMatrixRotation;
 	//mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -2.7f) * mPlayer.mMatrixRotation;//F22
 	//mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -2.5f) * mPlayer.mMatrixRotation;//F15
 	//mCamera.mEye = mPlayer.mPosition + CVector(0.0f, 0.6f, -2.7f) * mPlayer.mMatrixRotation;//Su57
@@ -68,7 +68,7 @@ void CSceneGameF22::Update() {
 	mCamera.mUp = CVector(0.0f, 1.0f, 0.0f) * mPlayer.mMatrixRotation;
 	//å„ÇÎÇå¸Ç≠
 	if (CKey::Push('C')) {
-		mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.6f, -2.7f) * mPlayer.mMatrixRotation;
+		mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -2.0f, -6.0f) * mPlayer.mMatrixRotation;
 		//mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.6f, -2.7f) * mPlayer.mMatrixRotation;//F22
 		//mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.6f, -3.0f) * mPlayer.mMatrixRotation;//F15
 		//mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.6f, -3.3f) * mPlayer.mMatrixRotation;//Su57

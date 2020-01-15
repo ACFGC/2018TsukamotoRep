@@ -1,7 +1,15 @@
 #include "CHpBar.h"
 #include"CEnemy.h"
-/*
+
 #define LIFE 150
+void CHpBar::Init(){
+	//‘Ì—Í‚ð100‚ÉÝ’è
+	HP = 100.0f;
+}
+void CHpBar::Update(){
+	
+}
+/*
 void CHpBar::SetHpBar(CCharacter*task,
 	const CVector&pos, const CVector &size,
 	float max, float hp){
@@ -21,26 +29,26 @@ void CHpBar::SetDiffuse(float r, float g, float b, float a) {
 	mBox.mMaterial.mDiffuse[2] = b;
 	mBox.mMaterial.mDiffuse[3] = a;
 }
-void CHpBar::Update(){
-	CCharacter::Update();
-	mBar.mScale.mX = mHp / mMax;
-	mBar.Update();
-	CMatrix matrix;
-	matrix.Translate(mpTask->mPosition.mX,
-		mpTask->mPosition.mY,mpTask->mPosition.mZ);
-	mMatrix = matrix*mMatrix;
-	mBar.mMatrix = mMatrix*mBar.mMatrix;
-	if (mHp <= 0.0f){
-		mEnabled = false;
-	}
-}
 void CHpBar::Render(){
-	float c[] = { 1.0f, 1.0f, 0.0f, 1.0f };
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, c);
+float c[] = { 1.0f, 1.0f, 0.0f, 1.0f };
+glMaterialfv(GL_FRONT, GL_DIFFUSE, c);
 
-	mT[0].Render(mMatrix);
-	mT[1].Render(mMatrix);
-	//mBox.Render(mMatrix);
-	//CCharacter::Render();
-	//mBar.Render();
-}*/
+mT[0].Render(mMatrix);
+mT[1].Render(mMatrix);
+//mBox.Render(mMatrix);
+//CCharacter::Render();
+//mBar.Render();
+}
+CCharacter::Update();
+mBar.mScale.mX = mHp / mMax;
+mBar.Update();
+CMatrix matrix;
+matrix.Translate(mpTask->mPosition.mX,
+mpTask->mPosition.mY, mpTask->mPosition.mZ);
+mMatrix = matrix*mMatrix;
+mBar.mMatrix = mMatrix*mBar.mMatrix;
+if (mHp <= 0.0f){
+mEnabled = false;
+}
+*/
+

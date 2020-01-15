@@ -21,7 +21,7 @@ CMissile::CMissile(CModel *model, float px, float py, float pz, float rx, float 
 
 void CMissile::Update() {
 	CVector vPos = CVector(1.0f, 0.0f, 0.0f) * mMatrix - CVector(0.0f, 0.0f, 0.0f) * mMatrix;//ミサイル座標
-	CVector vPosX = CVector(0.0f, 1.0f, 0.0f) * mMatrix + CVector(0.0f, 0.0f, 0.0f) * mMatrix;//ミサイルX座標
+	CVector vPosX = CVector(0.0f, 1.0f, 0.0f) * mMatrix - CVector(0.0f, 0.0f, 0.0f) * mMatrix;//ミサイルX座標
 	CVector vDir(mPosition.mX, 10, mPosition.mZ); //ミサイル方向ベクトル
 	//vPos = vPos.getRotationTowards(vDir);//ミサイル座標更新
 
@@ -40,16 +40,16 @@ void CMissile::Update() {
 	}
 	float missileX = vPosX.dot(vTargetPos);
 	//ミサイル追尾処理
-	/*if (missileX > 0.0f){
+	if (missileX > 0.0f){
 		//mRotation.mY += 1;
 		mMatrixRotation = mMatrixRotation*CMatrix().RotateX(1);
 	}
 	else if (missileX < 0.0f){
 		//mRotation.mY -= 1;
 		mMatrixRotation = mMatrixRotation*CMatrix().RotateX(-1);
-	}*/
+	}
 	//Y方向へ追尾
-	if (tenemy->mPosition.mY > CMissile::mPosition.mY){
+	/*if (tenemy->mPosition.mY > CMissile::mPosition.mY){
 	mPosition.mY += 0.1;
 	}
 	if (tenemy->mPosition.mY < CMissile::mPosition.mY){
@@ -74,7 +74,7 @@ void CMissile::Update() {
 	}
 	if (tenemy->mRotation.mX < CMissile::mRotation.mX){
 		mRotation.mX -= 0.1;
-	}
+	}*/
 	//ミサイル追尾処理時間
 	if (Time > 0){
 		Time--;
