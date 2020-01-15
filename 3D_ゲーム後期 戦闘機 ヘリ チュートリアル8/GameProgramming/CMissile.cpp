@@ -30,23 +30,23 @@ void CMissile::Update() {
 	//CVector vtargetppos = CPlayer::mpPlayer->mPosition - mPosition;
 	float missile = vPos.dot(vTargetPos);//ミサイル
 	//ミサイル追尾処理
-	if (missile > 0.0f){
+	if (missile > tenemy->mPosition.mX){
 		//mRotation.mY += 1;
 		mMatrixRotation = mMatrixRotation*CMatrix().RotateY(1);
 	}
-	else if (missile < 0.0f){
+	else if (missile < tenemy->mPosition.mX){
 		//mRotation.mY -= 1;
 		mMatrixRotation = mMatrixRotation*CMatrix().RotateY(-1);
 	}
 	float missileX = vPosX.dot(vTargetPos);
 	//ミサイル追尾処理
-	if (missileX > 0.0f){
+	if (missileX > tenemy->mPosition.mY){
 		//mRotation.mY += 1;
-		mMatrixRotation = mMatrixRotation*CMatrix().RotateX(1);
-	}
-	else if (missileX < 0.0f){
-		//mRotation.mY -= 1;
 		mMatrixRotation = mMatrixRotation*CMatrix().RotateX(-1);
+	}
+	else if (missileX < tenemy->mPosition.mY){
+		//mRotation.mY -= 1;
+		mMatrixRotation = mMatrixRotation*CMatrix().RotateX(1);
 	}
 	//Y方向へ追尾
 	/*if (tenemy->mPosition.mY > CMissile::mPosition.mY){
@@ -80,7 +80,7 @@ void CMissile::Update() {
 		Time--;
 	}
 	//時間がたったら再計算
-	if (Time == 0){
+	/*if (Time == 0){
 		if (missile < 0.0f){
 			mRotation.mY += 1;
 		}
@@ -105,7 +105,7 @@ void CMissile::Update() {
 		if (tenemy->mRotation.mX < CMissile::mRotation.mX){
 			mRotation.mX -= 0.1;
 		}
-	}
+	}*/
 	if (mLife > 0) {
 		mLife--;
 		//CCharacter::Update();

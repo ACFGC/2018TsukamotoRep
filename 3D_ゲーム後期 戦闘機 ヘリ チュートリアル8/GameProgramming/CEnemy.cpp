@@ -25,7 +25,7 @@ CEnemy::CEnemy(CModel *model, float px, float py, float pz, float rx, float ry, 
 	Init(model, px, py, pz, rx, ry, rz, sx, sy, sz);
 	TaskManager.Add(this);
 	mCollider.mpParent = this;
-	mCollider.mRadius = 1.0f;
+	mCollider.mRadius = 5.0f;
 	//フレアインターバル設定
 	mEFlareInterval = EFLAREINTERVAL_E;
 	//タグを設定
