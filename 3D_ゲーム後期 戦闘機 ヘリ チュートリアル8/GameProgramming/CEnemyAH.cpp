@@ -42,7 +42,7 @@ void CEnemyAH::Update() {
 	CVector vTargetHPos = CPlayerAH::mpPlayerAH->mPosition - mPosition;
 	//ƒvƒŒƒCƒ„[•ûŒü‚É’Ç”ö
 	float HE = vPos.dot(vTargetHPos);
-	mRotation.mY += 0.5f;
+	//mRotation.mY += 0.5f;
 	//’Ç”öˆ—ŽžŠÔ
 	if (EATime > 0){
 		EATime--;

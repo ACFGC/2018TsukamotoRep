@@ -25,7 +25,7 @@ void CTutorial::Init() {
 	mC5.Load("C5.obj", "C5.mtl");
 	//ƒ‚ƒfƒ‹Š„‚è“–‚Ä
 	mPlayer.Init(&mModel, 0.0f, 5.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	Enemy = new CEnemy(&mC5, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	Enemy = new CEnemy(&mC5, 0.0f, 5.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	Enemy = new CEnemy(&mC5, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 }
 

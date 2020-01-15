@@ -19,20 +19,22 @@ int mTime = 30 * 60;
 void CSceneGameF22::Init() {
 	//シーン設定
 	mScene = EGAMEF22;
+	//空(モデル)
+	mSky.Load("sky.obj", "sky.mtl");
 	//航空機(モデル)読み込み
 	mModel.Load("F22.obj", "F22.mtl");
-	mSky.Load("sky.obj", "sky.mtl");
+	mF22.Load("F22.obj", "F22.mtl");
+	/*
 	mF16.Load("f16.obj", "f16.mtl");
 	mF15.Load("F15.obj", "F15.mtl");
-	mF22.Load("F22.obj", "F22.mtl");
 	mSu57.Load("Su57.obj", "Su57.mtl");
 	mAH6.Load("AH6.obj", "AH6.mtl");
 	mC5.Load("C5.obj", "C5.mtl");
-	mAAM.Load("AAM.obj", "AAM.mtl");
+	mAAM.Load("AAM.obj", "AAM.mtl");*/
 	//モデル割り当て
 	mPlayer.Init(&mModel, 0.0f, 5.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	Enemy = new CEnemy(&mF15, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	Enemy = new CEnemy(&mSu57, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	Enemy = new CEnemy(&mF22, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	Enemy = new CEnemy(&mF22, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	/*
 	new CDummy(&mSu57, 4.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.19f, 0.19f, 0.19f);
 	new CDummy(&mF15, 8.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);

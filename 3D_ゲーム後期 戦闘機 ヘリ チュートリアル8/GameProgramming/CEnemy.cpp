@@ -50,7 +50,7 @@ void CEnemy::Update() {
 	CVector vTargetHPos = CPlayer::mpPlayer->mPosition - mPosition;
 	//ƒvƒŒƒCƒ„[•ûŒü‚É’Ç”ö
 	float HE = vPos.dot(vTargetHPos);
-	mRotation.mY += 0.5f;
+	//mRotation.mY += 0.5f;
 	//’Ç”öˆ—ŽžŠÔ
 	if (EATime > 0){
 		EATime--;

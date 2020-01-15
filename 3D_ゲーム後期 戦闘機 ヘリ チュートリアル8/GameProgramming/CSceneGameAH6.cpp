@@ -12,23 +12,25 @@ extern CText*mText;
 void CSceneGameAH6::Init() {
 	//シーン設定
 	mScene = EGAMEAH6;
+	//空(モデル)
+	mSky.Load("sky.obj", "sky.mtl");
 	//航空機(モデル)読み込み
 	mModel.Load("AH6.obj", "AH6.mtl");
-	mSky.Load("sky.obj", "sky.mtl");
+	mAH6.Load("AH6.obj", "AH6.mtl");
+	/*
 	mF16.Load("f16.obj", "f16.mtl");
 	mF15.Load("F15.obj", "F15.mtl");
 	mF22.Load("F22.obj", "F22.mtl");
 	mSu57.Load("Su57.obj", "Su57.mtl");
-	mAH6.Load("AH6.obj", "AH6.mtl");
-	mC5.Load("C5.obj", "C5.mtl");
+	mC5.Load("C5.obj", "C5.mtl");*/
 	//モデル割り当て
 	mPlayer.Init(&mModel, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	Enemy = new CEnemyAH(&mF22, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	Enemy = new CEnemyAH(&mSu57, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	new CDummy(&mAH6, 4.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	Enemy = new CEnemyAH(&mAH6, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	Enemy = new CEnemyAH(&mAH6, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	/*new CDummy(&mAH6, 4.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	new CDummy(&mF15, 8.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	new CDummy(&mF16, 12.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	new CDummy(&mC5, 16.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.1f, 0.1f, 0.1f);
+	new CDummy(&mC5, 16.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.1f, 0.1f, 0.1f);*/
 }
 
 void CSceneGameAH6::Update() {
