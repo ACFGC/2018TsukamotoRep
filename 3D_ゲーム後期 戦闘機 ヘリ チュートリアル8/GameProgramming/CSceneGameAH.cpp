@@ -48,8 +48,8 @@ void CSceneGameAH::Update() {
 		mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -2.0f, -8.0f) * mPlayer.mMatrixRotation;
 	}
 	if (CKey::Once(VK_BACK)){
-		//タイトルに戻る
-		mScene = ETITLE;
+		//ゲームオーバー
+		mScene = EGAMEOVER;
 	}
 	mCamera.Render();
 

@@ -139,6 +139,7 @@
     <ClInclude Include="CEnemyAH.h" />
     <ClInclude Include="CFire.h" />
     <ClInclude Include="CFlare.h" />
+    <ClInclude Include="CGameOver.h" />
     <ClInclude Include="CHpBar.h" />
     <ClInclude Include="CKey.h" />
     <ClInclude Include="CMaterial.h" />

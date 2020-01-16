@@ -1,8 +1,10 @@
 #include "CBullet.h"
 #include"CEnemy.h"
-
-#define LIFE 150
-
+#include"CFire.h"
+#include"CSceneGameF22.h"
+#define LIFE 100
+//ファイアの外部変数を呼ぶ
+extern CFire *f;
 CBullet::CBullet()
 : mLife(LIFE)
 {
@@ -40,7 +42,7 @@ void CBullet::Update() {
 		//行列更新
 		mMatrix = mMatrix.Scale(mScale.mX, mScale.mY, mScale.mZ) * mMatrixRotation *
 			mMatrix.Translate(mPosition.mX, mPosition.mY, mPosition.mZ);
-		mPosition = mPosition + CVector(0.0f, 0.0f, 2.0f) * mMatrixRotation;
+		mPosition = mPosition + CVector(0.0f, 0.0f, 4.0f) * mMatrixRotation;
 	}
 	else {
 		mEnabled = false;
@@ -61,6 +63,10 @@ void CBullet::Collision(CCollider *m, CCollider *y) {
 		switch (y->mpParent->mTaskTag){
 			//当たった相手のタグがEENEMYなら
 		case EENEMY:
+			f = new CFire();
+			f->mPosition = y->mpParent->mPosition;
+			f->SetTexture("fire.tga");
+			TaskManager.Add(f);
 			//自分を消す
 			m->mpParent->mEnabled = false;
 			//当たった相手を消す

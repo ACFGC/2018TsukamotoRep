@@ -114,9 +114,23 @@ void CEnemy::Collision(CCollider *m, CCollider *y) {
 	//当たったか判定
 	if (CCollider::Collision(m, y)){
 		switch (y->mpParent->mTaskTag){
+		//当たった相手のタグがEPLAYERMISSILEなら
+		case EPLAYERMISSILE:
+			HP.HP -= 40.0f;
+			if (HP.HP <= 0.0f){
+				f = new CFire();
+				f->mPosition = y->mpParent->mPosition;
+				f->SetTexture("fire.tga");
+				TaskManager.Add(f);
+				//自分を消す
+				m->mpParent->mEnabled = false;
+				//当たった相手を消す
+				//y->mpParent->mEnabled = false;
+			}
+			break;
 		//当たった相手のタグがEPLAYERBULLETなら
 		case EPLAYERBULLET:
-			HP.HP -= 40.0f;
+			HP.HP -= 1.0f;
 			if (HP.HP <= 0.0f){
 				f = new CFire();
 				f->mPosition = y->mpParent->mPosition;

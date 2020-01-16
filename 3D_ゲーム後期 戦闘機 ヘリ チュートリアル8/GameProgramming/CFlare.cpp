@@ -66,7 +66,7 @@ void CFlare::Update() {
 		//çsóÒçXêV
 		mMatrix = mMatrix.Scale(mScale.mX, mScale.mY, mScale.mZ)*
 			mMatrixRotation*mMatrix.Translate(mPosition.mX, mPosition.mY, mPosition.mZ);
-		mPosition = mPosition - CVector(0.0f, 0.0f, 0.1f) * mMatrixRotation;
+		mPosition = mPosition + CVector(0.0f, -0.1f, 0.1f) * mMatrixRotation;
 	}
 	else {
 		mEnabled = false;

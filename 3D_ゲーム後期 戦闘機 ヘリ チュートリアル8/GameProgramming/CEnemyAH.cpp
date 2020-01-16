@@ -4,7 +4,7 @@
 #include"CFlare.h"
 #include"CPlayerAH.h"
 #include"CSceneGameAH.h"
-
+#include"CHpBar.h"
 #define VELOCITY_ENEMY 0.3f
 //ミサイルクールタイム
 #define MISSILEINTERVAL_E 100
@@ -18,6 +18,8 @@ extern CModel mAAM;
 extern CFlare*EFlare;
 //ファイアの外部変数を呼ぶ
 extern CFire *f;
+//HPバーの外部変数を作る
+extern CHpBar HP;
 CEnemyAH::CEnemyAH(CModel *model, float px, float py, float pz, float rx, float ry, float rz, float sx, float sy, float sz) {
 	Init(model, px, py, pz, rx, ry, rz, sx, sy, sz);
 	TaskManager.Add(this);
@@ -105,16 +107,33 @@ void CEnemyAH::Collision(CCollider *m, CCollider *y) {
 	//当たったか判定
 	if (CCollider::Collision(m, y)){
 		switch (y->mpParent->mTaskTag){
-			//当たった相手のタグがEPLAYERBULLETなら
+		//当たった相手のタグがEPLAYERMISSILEなら
+		case EPLAYERMISSILE:
+			HP.HP -= 40.0f;
+			if (HP.HP <= 0.0f){
+				f = new CFire();
+				f->mPosition = y->mpParent->mPosition;
+				f->SetTexture("fire.tga");
+				TaskManager.Add(f);
+				//自分を消す
+				m->mpParent->mEnabled = false;
+				//当たった相手を消す
+				//y->mpParent->mEnabled = false;
+			}
+			break;
+		//当たった相手のタグがEPLAYERBULLETなら
 		case EPLAYERBULLET:
-			f = new CFire();
-			f->mPosition = y->mpParent->mPosition;
-			f->SetTexture("fire.tga");
-			TaskManager.Add(f);
-			//自分を消す
-			m->mpParent->mEnabled = false;
-			//当たった相手を消す
-			y->mpParent->mEnabled = false;
+			HP.HP -= 1.0f;
+			if (HP.HP <= 0.0f){
+				f = new CFire();
+				f->mPosition = y->mpParent->mPosition;
+				f->SetTexture("fire.tga");
+				TaskManager.Add(f);
+				//自分を消す
+				m->mpParent->mEnabled = false;
+				//当たった相手を消す
+				//y->mpParent->mEnabled = false;
+			}
 			break;
 		}
 	}

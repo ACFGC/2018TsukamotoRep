@@ -278,5 +278,8 @@
     <ClInclude Include="CHpBar.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="CGameOver.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

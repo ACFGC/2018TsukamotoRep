@@ -11,9 +11,9 @@ public:
 		//タイトル
 		ETITLE,
 		//ゲームクリア
-		EGAMEOVER,
-		//ゲームオーバー
 		EGAMECLEAR,
+		//ゲームオーバー
+		EGAMEOVER,
 		//チュートリアル
 		ETUTORIAL,
 		//戦闘機(セレクト画面)

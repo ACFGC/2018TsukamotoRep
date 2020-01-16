@@ -110,9 +110,10 @@ void CPlayer::Update() {
 	//機関砲発射
 	if (CKey::Push(VK_SPACE)){
 		CBullet*b = new CBullet();
-		b->Set(0.0f, 0.0f, 0.0f, 0.03f, 0.03f, 0.3f);
+		b->Set(-0.5f, 0.0f, 0.2f, 0.03f, 0.03f, 0.3f);
 		b->SetDiffuse(1.0f, 1.0f, 0.0f, 1.0f);
 		b->mPosition = mPosition;
+		
 		//回転行列を設定
 		b->mMatrixRotation = mMatrixRotation;
 		TaskManager.Add(b);
@@ -143,7 +144,6 @@ void CPlayer::Update() {
 	if (CKey::Push('F')) {
 		if (mFlareInterval <= 0){
 			mFlareInterval = FLAREINTERVAL_E;
-
 			//フレア
 			//フレア1
 		    Flare= new CFlare();
@@ -177,6 +177,13 @@ void CPlayer::Update() {
 			TaskManager.Add(Flare);
 		}
 	}
+	/*if (CKey::Push('Q')){
+		f = new CFire();
+		f->SetSize(0.5f, 0.5f);
+		f->mPosition = mPosition;
+		f->SetTexture("notenecbw_L.tga");
+		TaskManager.Add(f);
+	}*/
 	//mHpBar.Update();
 	//CCharacter::Update();
 }
@@ -186,10 +193,10 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 		switch (y->mpParent->mTaskTag)
 		{
 		case EENEMYBULLET:
-			f = new CFire();
+			/*f = new CFire();
 			f->mPosition = y->mpParent->mPosition;
 			f->SetTexture("fire.tga");
-			TaskManager.Add(f);
+			TaskManager.Add(f);*/
 			HP.HP -= 40.0f;
 			if (HP.HP <= 0.0f){
 				//自分を消す
@@ -197,14 +204,14 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 				//当たった相手を消す
 				//y->mpParent->mEnabled = false;
 			}
-			/*HP -= 40;
-			if (HP <= 0){
-				//自分を消す
-				m->mpParent->mEnabled = false;
-				//当たった相手を消す
-				y->mpParent->mEnabled = false;
-			}*/
 			break;
+		/*case EPLAYERBULLET:
+			f = new CFire();
+			f->SetSize(0.5f, 0.5f);
+			f->mPosition = y->mpParent->mPosition;
+			f->SetTexture("Autocannon.tga");
+			TaskManager.Add(f);
+			break;*/
 		}
 	}
 }

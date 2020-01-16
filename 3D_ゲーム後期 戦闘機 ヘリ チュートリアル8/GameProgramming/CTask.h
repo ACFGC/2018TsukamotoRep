@@ -18,7 +18,8 @@ public:
 		//敵
 		EENEMY,
 		//プレイヤーの攻撃
-		EPLAYERBULLET,
+		EPLAYERBULLET,//機関砲
+		EPLAYERMISSILE,//ミサイル
 		//敵の攻撃
 		EENEMYBULLET,
 		//フレア

@@ -76,8 +76,8 @@ void CSceneGameF22::Update() {
 		//mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.6f, -3.3f) * mPlayer.mMatrixRotation;//Su57
 	}
 	if (CKey::Once(VK_BACK)){
-		//タイトルに戻る
-		mScene = ETITLE;
+		//ゲームオーバー
+		mScene = EGAMEOVER;
 	}
 	mCamera.Render();
 

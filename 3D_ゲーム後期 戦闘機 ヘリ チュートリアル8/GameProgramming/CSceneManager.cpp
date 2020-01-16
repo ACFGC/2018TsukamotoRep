@@ -3,6 +3,8 @@
 #include"CTitle.h"
 //ネクストシーン
 #include"CNextScene.h"
+//ゲームオーバー
+#include"CGameOver.h"
 //チュートリアル
 #include"CTutorial.h"
 //戦闘機(セレクト)
@@ -102,10 +104,11 @@ void CSceneManager::Update() {
 			mpScene = new CSceneGameAH6();
 			mpScene->Init();
 			break;
-		/*case CScene::EGAMEOVER:
-			mpScene = new CGameover();
+		case CScene::EGAMEOVER:
+			mpScene = new CGameOver();
 			mpScene->Init();
 			break;
+		/*
 		case CScene::EGAMECLEAR:
 			mpScene = new CGameclear();
 			mpScene->Init();

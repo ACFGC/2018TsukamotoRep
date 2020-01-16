@@ -55,12 +55,13 @@ void CTutorial::Update() {
 		mCamera.mEye = mPlayer.mPosition - CVector(0.0f, -0.6f, -3.0f) * mPlayer.mMatrixRotation;
 	}
 	if (CKey::Once(VK_BACK)){
-		//タイトルに戻る
-		mScene = ETITLE;
+		//ゲームオーバー
+		mScene = EGAMEOVER;
 	}
 	mCamera.Render();
 
 	mSky.Render(CMatrix());
+	//mSky.Render(CMatrix().Scale(10.0f,10.0f,10.0f));
 	mPlayer.Render();
 	TaskManager.Render();
 	//2D座標でUIを描画

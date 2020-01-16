@@ -48,33 +48,6 @@ void CMissile::Update() {
 		//mRotation.mY -= 1;
 		mMatrixRotation = mMatrixRotation*CMatrix().RotateX(1);
 	}
-	//Y•ûŒü‚Ö’Ç”ö
-	/*if (tenemy->mPosition.mY > CMissile::mPosition.mY){
-	mPosition.mY += 0.1;
-	}
-	if (tenemy->mPosition.mY < CMissile::mPosition.mY){
-	mPosition.mY -= 0.1;
-	}
-	//X•ûŒü‚Ö’Ç”ö
-	if (tenemy->mPosition.mX > CMissile::mPosition.mX){
-		mPosition.mX += 0.1;
-	}
-	if (tenemy->mPosition.mX < CMissile::mPosition.mX){
-		mPosition.mX -= 0.1;
-	}
-	//Z•ûŒü‚Ö’Ç”ö
-	if (tenemy->mPosition.mZ > CMissile::mPosition.mZ){
-		mPosition.mZ += 0.1;
-	}
-	if (tenemy->mPosition.mZ < CMissile::mPosition.mZ){
-		mPosition.mZ -= 0.1;
-	}
-	if (tenemy->mRotation.mX > CMissile::mRotation.mX){
-		mRotation.mX += 0.1;
-	}
-	if (tenemy->mRotation.mX < CMissile::mRotation.mX){
-		mRotation.mX -= 0.1;
-	}*/
 	//ƒ~ƒTƒCƒ‹’Ç”öˆ—ŽžŠÔ
 	if (Time > 0){
 		Time--;
