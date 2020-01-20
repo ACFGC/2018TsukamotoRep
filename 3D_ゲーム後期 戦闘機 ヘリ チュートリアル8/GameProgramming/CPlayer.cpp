@@ -199,6 +199,13 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 			TaskManager.Add(f);*/
 			HP.HP -= 40.0f;
 			if (HP.HP <= 0.0f){
+				mState = EDESTORY;
+				switch (y->mpParent->mState)
+				{
+				case EDESTORY:
+					y->mpParent->mEnabled = false;
+					break;
+				}
 				//©•ª‚ğÁ‚·
 				m->mpParent->mEnabled = false;
 				//“–‚½‚Á‚½‘Šè‚ğÁ‚·

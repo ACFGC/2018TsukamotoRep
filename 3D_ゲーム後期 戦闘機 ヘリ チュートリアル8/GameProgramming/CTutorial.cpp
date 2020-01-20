@@ -58,6 +58,9 @@ void CTutorial::Update() {
 		//ゲームオーバー
 		mScene = EGAMEOVER;
 	}
+	/*if(CPlayer::mpPlayer->mState == CPlayer::EState::EDESTORY){
+		mScene = EGAMEOVER;
+	}*/
 	mCamera.Render();
 
 	mSky.Render(CMatrix());

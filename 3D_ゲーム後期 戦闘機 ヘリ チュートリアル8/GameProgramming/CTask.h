@@ -24,8 +24,16 @@ public:
 		EENEMYBULLET,
 		//フレア
 		EFLARE,
+		//レーダー
+		ERADAR,
 	};
 	ETaskTag mTaskTag;
+	//状態識別子
+	enum EState{
+		//撃墜
+		EDESTORY,
+	};
+	EState mState;//状態
 	//衝突処理
 	virtual bool Collision(CTask*m, CTask*y){ return false; };
 	virtual ~CTask() {};

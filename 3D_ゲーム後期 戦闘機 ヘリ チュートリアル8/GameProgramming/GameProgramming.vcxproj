@@ -105,6 +105,7 @@
     <ClCompile Include="CNextScene.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CPlayerAH.cpp" />
+    <ClCompile Include="CRadar.cpp" />
     <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="CSceneGameAH6.cpp" />
     <ClCompile Include="CSceneGameF15.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="CNextScene.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPlayerAH.h" />
+    <ClInclude Include="CRadar.h" />
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneGameAH6.h" />
