@@ -92,15 +92,23 @@ void CRadar::Render() {
 	mT[11].Render(mMatrix);
 	*/
 	if (Enemy){
-		mMatrix = Enemy->mMatrix.Translate(Enemy->mPosition.mX, Enemy->mPosition.mY, Enemy->mPosition.mZ);
-		mBox.Render(mMatrix);
+		//アルファブレンドを有効にする
+		glEnable(GL_BLEND);
+		//ブレンド方法を指定
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//mMatrix = Enemy->mMatrix.Translate(Enemy->mPosition.mX, Enemy->mPosition.mY, Enemy->mPosition.mZ);
+		mBox.Render(CMatrix().Translate(Enemy->mPosition.mX, Enemy->mPosition.mY, Enemy->mPosition.mZ));
+		//アルファブレンドを無効
+		glDisable(GL_BLEND);
+		//テクスチャを無効
+		glDisable(GL_TEXTURE_2D);
 	}
 	//mBox.Render(mMatrix);
 }
 			
-void CRadar::Collision(CSphereCollider *m, CSphereCollider *y) {
+void CRadar::Collision(CCollider *m, CCollider *y) {
 	//当たったか判定
-	if (CSphereCollider::Collision(m, y)){
+	if (CCollider::Collision(m, y)){
 		switch (y->mpParent->mTaskTag){
 		//当たった相手のタグがEENEMYなら
 		case EENEMY:

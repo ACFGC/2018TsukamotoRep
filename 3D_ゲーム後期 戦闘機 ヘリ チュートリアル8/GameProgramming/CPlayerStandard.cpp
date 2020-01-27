@@ -177,8 +177,8 @@ void CPlayerStandard::Update() {
 			TaskManager.Add(Flare);
 		}
 	}
-	mRadar.mPosition = mPosition + CVector(0.0f, 0.0f, 10.0f);
-	mRadar.Update();
+	//mRadar.mPosition = mPosition + CVector(0.0f, 0.0f, 10.0f);
+	//mRadar.Update();
 	/*if (CKey::Push('Q')){
 	f = new CFire();
 	f->SetSize(0.5f, 0.5f);

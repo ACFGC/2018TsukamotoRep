@@ -17,6 +17,6 @@ public:
 	void SetDiffuse(float r, float g, float b, float a);
 	void Update();
 	void Render();
-	void Collision(CSphereCollider *m, CSphereCollider *y);
+	void Collision(CCollider *m, CCollider *y);
 };
 #endif
