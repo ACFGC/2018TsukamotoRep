@@ -23,16 +23,12 @@ public:
 	//更新処理のオーバーライド
 	void Update(){
 		if (CKey::Once(VK_RETURN)){
-			//次は機体選択
-			mScene = ESELECTF22;
+			//次は操作選択
+			mScene = EGAMEOPERATION;
 		}
 		if (CKey::Once(' ')){
 			//次はチュートリアル
-			mScene = ETUTORIAL;
-		}
-		if (CKey::Once(VK_BACK)){
-			//次はゲームF22
-			mScene = EGAMEF22;
+			mScene = ETUTORIALOPERATION;
 		}
 		//2D座標でUIを描画
 		//行列をプロジェクションモードへ変更

@@ -1,6 +1,7 @@
 #include "CFire.h"
 #include "CPlayer.h"
 #include"CPlayerAH.h"
+#include"CPlayerStandard.h"
 #define LIFE 10
 
 void CFire::SetSize(float w, float h) {
@@ -22,6 +23,7 @@ void CFire::Update() {
 	else {
 		mEnabled = false;
 	}
+	//í“¬‹@(‘€ì“ï)
 	if (CPlayer::mpPlayer) {
 		CVector dir = CPlayer::mpPlayer->mPosition + mPosition * -1;
 		mRotation.mY = atan2f(dir.mX, dir.mZ) / 2.0f / 3.14f * 360.0f;
@@ -33,8 +35,21 @@ void CFire::Update() {
 			mRotation.mX = -90.0f - (mRotation.mX + 90.0f);
 		}
 	}
+	//ƒwƒŠ
 	if (CPlayerAH::mpPlayerAH) {
 		CVector dir = CPlayerAH::mpPlayerAH->mPosition + mPosition * -1;
+		mRotation.mY = atan2f(dir.mX, dir.mZ) / 2.0f / 3.14f * 360.0f;
+		mRotation.mX = -atan2f(dir.mY, dir.mZ) / 2.0f / 3.14f * 360.0f;
+		if (mRotation.mX > 90.0f) {
+			mRotation.mX = 90.0f - (mRotation.mX - 90.0f);
+		}
+		else if (mRotation.mX < -90.0f) {
+			mRotation.mX = -90.0f - (mRotation.mX + 90.0f);
+		}
+	}
+	//í“¬‹@(‘€ìˆÕ)
+	if (CPlayerStandard::mPlayerStandard) {
+		CVector dir = CPlayerStandard::mPlayerStandard->mPosition + mPosition * -1;
 		mRotation.mY = atan2f(dir.mX, dir.mZ) / 2.0f / 3.14f * 360.0f;
 		mRotation.mX = -atan2f(dir.mY, dir.mZ) / 2.0f / 3.14f * 360.0f;
 		if (mRotation.mX > 90.0f) {

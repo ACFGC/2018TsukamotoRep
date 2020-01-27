@@ -5,8 +5,16 @@
 #include"CNextScene.h"
 //ゲームオーバー
 #include"CGameOver.h"
+
 //チュートリアル
 #include"CTutorial.h"
+#include"CTutorialStandard.h"
+
+//操作選択
+#include"CTutorialOperation.h"
+#include"CGameOperation.h"
+
+//操作難易度(高)
 //戦闘機(セレクト)
 #include"CSelectF22.h"
 #include"CSelectF15.h"
@@ -15,9 +23,22 @@
 #include"CSceneGameF22.h"
 #include"CSceneGameF15.h"
 #include"CSceneGameSu57.h"
+
+//操作難易度(低)
+//戦闘機(セレクト)
+#include"CSelectF22SD.h"
+#include"CSelectF15SD.h"
+#include"CSelectSu57SD.h"
+//戦闘機(ゲーム)
+#include"CSceneGameF22SD.h"
+#include"CSceneGameF15SD.h"
+#include"CSceneGameSu57SD.h"
+
 //ヘリ(セレクト)
 #include"CSelectAH1.h"
+#include"CSelectAH1SD.h"
 #include"CSelectAH6.h"
+#include"CSelectAH6SD.h"
 //ヘリ(ゲーム)
 #include"CSceneGameAH.h"
 #include"CSceneGameAH6.h"
@@ -60,6 +81,22 @@ void CSceneManager::Update() {
 			mpScene = new CTutorial();
 			mpScene->Init();
 			break;
+		case CScene::ETUTORIALSTANDARD:
+			mpScene = new CTutorialStandard();
+			mpScene->Init();
+			break;
+
+		//操作選択生成
+		case CScene::ETUTORIALOPERATION:
+			mpScene = new CTutorialOperation();
+			mpScene->Init();
+			break;
+		case CScene::EGAMEOPERATION:
+			mpScene = new CGameOperation();
+			mpScene->Init();
+			break;
+
+		//操作難易度(高)
 		//戦闘機(セレクト)
 		case CScene::ESELECTF22:
 			mpScene = new CSelectF22();
@@ -86,13 +123,50 @@ void CSceneManager::Update() {
 			mpScene = new CSceneGameSu57();
 			mpScene->Init();
 			break;
+
+		//操作難易度(低)
+		//戦闘機(セレクト)
+		case CScene::ESELECTF22SD:
+			mpScene = new CSelectF22SD();
+			mpScene->Init();
+			break;
+		case CScene::ESELECTF15SD:
+			mpScene = new CSelectF15SD();
+			mpScene->Init();
+			break;
+		case CScene::ESELECTSu57SD:
+			mpScene = new CSelectSu57SD();
+			mpScene->Init();
+			break;
+		//戦闘機(ゲーム)
+		case CScene::EGAMEF22SD:
+			mpScene = new CSceneGameF22SD();
+			mpScene->Init();
+			break;
+		case CScene::EGAMEF15SD:
+			mpScene = new CSceneGameF15SD();
+			mpScene->Init();
+			break;
+		case CScene::EGAMESu57SD:
+			mpScene = new CSceneGameSu57SD();
+			mpScene->Init();
+			break;
+
 		//ヘリ(セレクト)
 		case CScene::ESELECTAH1:
 			mpScene = new CSelectAH1();
 			mpScene->Init();
 			break;
+		case CScene::ESELECTAH1SD:
+			mpScene = new CSelectAH1SD();
+			mpScene->Init();
+			break;
 		case CScene::ESELECTAH6:
 			mpScene = new CSelectAH6();
+			mpScene->Init();
+			break;
+		case CScene::ESELECTAH6SD:
+			mpScene = new CSelectAH6SD();
 			mpScene->Init();
 			break;
 		//ヘリ(ゲーム)
@@ -104,6 +178,8 @@ void CSceneManager::Update() {
 			mpScene = new CSceneGameAH6();
 			mpScene->Init();
 			break;
+
+		//ゲームオーバー
 		case CScene::EGAMEOVER:
 			mpScene = new CGameOver();
 			mpScene->Init();

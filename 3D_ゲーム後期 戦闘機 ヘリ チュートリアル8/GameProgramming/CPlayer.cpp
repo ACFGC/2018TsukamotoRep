@@ -127,7 +127,7 @@ void CPlayer::Update() {
 		if (mMissileInterval <= 0){
 			mMissileInterval = FIREINTERVAL_E;
 			m = new CMissile(&mAAM, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 3.0f, 3.0f, 3.0f);
-			m->mTaskTag = EPLAYERBULLET;
+			m->mTaskTag = EPLAYERMISSILE;
 			m->mPosition = mPosition;
 			//m->mRotation = mRotation;
 			//‰ñ“]s—ñ‚ğİ’è
@@ -177,6 +177,8 @@ void CPlayer::Update() {
 			TaskManager.Add(Flare);
 		}
 	}
+	mRadar.mPosition = mPosition + CVector(0.0f, 0.0f, 10.0f);
+	mRadar.Update();
 	/*if (CKey::Push('Q')){
 		f = new CFire();
 		f->SetSize(0.5f, 0.5f);
@@ -187,7 +189,10 @@ void CPlayer::Update() {
 	//mHpBar.Update();
 	//CCharacter::Update();
 }
-
+void CPlayer::Render(){
+	CCharacter::Render();
+	mRadar.Render();
+}
 void CPlayer::Collision(CCollider *m, CCollider *y) {
 	if (CCollider::Collision(m, y)) {
 		switch (y->mpParent->mTaskTag)
@@ -200,10 +205,10 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 			HP.HP -= 40.0f;
 			if (HP.HP <= 0.0f){
 				mState = EDESTORY;
-				switch (y->mpParent->mState)
+				switch (m->mpParent->mState)
 				{
 				case EDESTORY:
-					y->mpParent->mEnabled = false;
+					m->mpParent->mEnabled = false;
 					break;
 				}
 				//©•ª‚ğÁ‚·

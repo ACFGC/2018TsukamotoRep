@@ -34,6 +34,7 @@ public:
 		EDESTORY,
 	};
 	EState mState;//ó‘Ô
+	//CMatrix* mMatrix;
 	//Õ“Ëˆ—
 	virtual bool Collision(CTask*m, CTask*y){ return false; };
 	virtual ~CTask() {};

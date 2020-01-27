@@ -14,8 +14,16 @@ public:
 		EGAMECLEAR,
 		//ゲームオーバー
 		EGAMEOVER,
+
 		//チュートリアル
 		ETUTORIAL,
+		ETUTORIALSTANDARD,
+
+		//操作選択
+		ETUTORIALOPERATION,
+		EGAMEOPERATION,
+
+		//操作(難易度高)
 		//戦闘機(セレクト画面)
 		ESELECTF22,
 		ESELECTF15,
@@ -24,9 +32,22 @@ public:
 		EGAMEF22,
 		EGAMEF15,
 		EGAMESu57,
+
+		//操作(難易度低)
+		//戦闘機(セレクト画面)
+		ESELECTF22SD,
+		ESELECTF15SD,
+		ESELECTSu57SD,
+		//戦闘機(ゲーム画面)
+		EGAMEF22SD,
+		EGAMEF15SD,
+		EGAMESu57SD,
+
 		//ヘリコプター(セレクト画面)
 		ESELECTAH1,
+		ESELECTAH1SD,
 		ESELECTAH6,
+		ESELECTAH6SD,
 		//ヘリコプター(ゲーム画面)
 		EGAMEAH1,
 		EGAMEAH6,

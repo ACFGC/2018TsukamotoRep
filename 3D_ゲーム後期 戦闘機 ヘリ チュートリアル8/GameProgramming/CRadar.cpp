@@ -1,14 +1,20 @@
 #include"CRadar.h"
 #include"CSceneGameF22.h"
 #include"CFire.h"
+#include"CEnemy.h"
+extern CEnemy*Enemy;
+CEnemy *CRadar::mptarget = 0;
 CRadar::CRadar()
 {
 	mCollider.mpParent = this;
 	mCollider.mRadius = 100.0f;
 	mTaskTag = ERADAR;
+	CRadar::SetDiffuse(0.0f,1.0f,0.0f,0.5f);
+	mBox.Set(0.0f, 0.0f, 0.0f, 3.0f, 3.0f, 3.0f);
 }
 
 void CRadar::Set(float x, float y, float z, float w, float h, float d) {
+	/*
 	mT[0].SetVertex(x - w, y - h, z + d, x + w, y - h, z + d, x + w, y + h, z + d);
 	mT[0].SetNormal(0.0f, 0.0f, 1.0f);
 	mT[1].SetVertex(x - w, y - h, z + d, x + w, y + h, z + d, x - w, y + h, z + d);
@@ -46,6 +52,7 @@ void CRadar::Set(float x, float y, float z, float w, float h, float d) {
 	mT[1].mV[1] = CVector(x - w, y, z - d);
 	mT[1].mV[2] = CVector(x - w, y, z + d);
 	mT[1].SetNormal(0.0f, 1.0f, 0.0f);*/
+
 	mBox.Set(x, y, z, w, h, d);
 	mCollider.mRadius = d;
 	mCollider.mV[0] = CVector(0.0f, 0.0f, 0.0f);
@@ -59,6 +66,7 @@ void CRadar::SetDiffuse(float r, float g, float b, float a) {
 }
 
 void CRadar::Update() {
+	Enemy = 0;
 	//行列更新
 	mMatrix = mMatrix.Scale(mScale.mX, mScale.mY, mScale.mZ)*
 		mMatrixRotation*mMatrix.Translate(mPosition.mX, mPosition.mY, mPosition.mZ);
@@ -66,6 +74,7 @@ void CRadar::Update() {
 }
 
 void CRadar::Render() {
+	/*
 	float c[] = { 1.0f, 1.0f, 0.0f, 1.0f };
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, c);
 
@@ -81,23 +90,30 @@ void CRadar::Render() {
 	mT[9].Render(mMatrix);
 	mT[10].Render(mMatrix);
 	mT[11].Render(mMatrix);
+	*/
+	if (Enemy){
+		mMatrix = Enemy->mMatrix.Translate(Enemy->mPosition.mX, Enemy->mPosition.mY, Enemy->mPosition.mZ);
+		mBox.Render(mMatrix);
+	}
 	//mBox.Render(mMatrix);
 }
-
-void CRadar::Collision(CCollider *m, CCollider *y) {
+			
+void CRadar::Collision(CSphereCollider *m, CSphereCollider *y) {
 	//当たったか判定
-	if (CCollider::Collision(m, y)){
+	if (CSphereCollider::Collision(m, y)){
 		switch (y->mpParent->mTaskTag){
-		//当たった相手のタグがEENEMYBULLETなら
-		case EENEMYBULLET:
+		//当たった相手のタグがEENEMYなら
+		case EENEMY:
+			mptarget = (CEnemy*)y->mpParent;
+			Enemy = mptarget;
 			CFire *f = new CFire();
 			f->mPosition = y->mpParent->mPosition;
 			f->SetTexture("fire.tga");
 			TaskManager.Add(f);
 			//自分を消す
-			m->mpParent->mEnabled = false;
+//			m->mpParent->mEnabled = false;
 			//当たった相手を消す
-			y->mpParent->mEnabled = false;
+//			y->mpParent->mEnabled = false;
 			break;
 		}
 	}

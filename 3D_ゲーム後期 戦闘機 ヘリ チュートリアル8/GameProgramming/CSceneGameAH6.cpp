@@ -1,10 +1,9 @@
-#include "CSceneGameAH6.h"
-#include "glut.h"
-#include "CTriangle.h"
-#include "CKey.h"
-#include "CEnemyAH.h"
-#include "CFire.h"
-#include <math.h>
+#include"CSceneGameAH6.h"
+#include"glut.h"
+#include"CTriangle.h"
+#include"CKey.h"
+#include"CEnemyAH.h"
+#include<math.h>
 //敵の外部変数を呼ぶ
 extern CEnemyAH*Enemy;
 //テキストの外部変数を呼ぶ

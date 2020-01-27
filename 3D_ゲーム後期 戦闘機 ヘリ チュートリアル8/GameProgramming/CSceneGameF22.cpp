@@ -1,10 +1,9 @@
-#include "CSceneGameF22.h"
-#include "glut.h"
-#include "CTriangle.h"
-#include "CKey.h"
-#include "CEnemy.h"
-#include "CFire.h"
-#include <math.h>
+#include"CSceneGameF22.h"
+#include"glut.h"
+#include"CTriangle.h"
+#include"CKey.h"
+#include"CEnemy.h"
+#include<math.h>
 //タスクマネージャーの外部変数を作る
 CTaskManager TaskManager;
 //コリジョンマネージャーの外部変数を作る
