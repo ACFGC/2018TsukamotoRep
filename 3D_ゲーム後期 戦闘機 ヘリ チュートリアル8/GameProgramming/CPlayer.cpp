@@ -129,6 +129,7 @@ void CPlayer::Update() {
 			m = new CMissile(&mAAM, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 3.0f, 3.0f, 3.0f);
 			m->mTaskTag = EPLAYERMISSILE;
 			m->mPosition = mPosition;
+			m->tenemy = CRadar::mptarget;
 			//m->mRotation = mRotation;
 			//‰ñ“]s—ñ‚ðÝ’è
 			m->mMatrixRotation = mMatrixRotation;
@@ -205,11 +206,9 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 			HP.HP -= 40.0f;
 			if (HP.HP <= 0.0f){
 				mState = EDESTORY;
-				switch (m->mpParent->mState)
-				{
-				case EDESTORY:
+				if (EDESTORY){
 					m->mpParent->mEnabled = false;
-					break;
+					mpPlayer->mEnabled = false;
 				}
 				//Ž©•ª‚ðÁ‚·
 				m->mpParent->mEnabled = false;

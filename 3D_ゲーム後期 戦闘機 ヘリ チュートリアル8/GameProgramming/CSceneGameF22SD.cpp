@@ -9,7 +9,7 @@ extern CTaskManager TaskManager;
 //コリジョンマネージャーの外部変数を作る
 extern CCollisionManager CollisionManager;
 //敵の外部変数を作る
-extern CEnemyStandard*Enemy;
+extern CEnemyStandard*EnemySD;
 //テキストの外部変数を呼ぶ
 extern CText*mText;
 #define Time 100
@@ -30,8 +30,8 @@ void CSceneGameF22SD::Init() {
 	mAAM.Load("AAM.obj", "AAM.mtl");*/
 	//モデル割り当て
 	mPlayer.Init(&mModel, 0.0f, 5.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	Enemy = new CEnemyStandard(&mF22, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	Enemy = new CEnemyStandard(&mF22, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	EnemySD = new CEnemyStandard(&mF22, 0.0f, 13.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	EnemySD = new CEnemyStandard(&mF22, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	/*
 	new CDummy(&mSu57, 4.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.19f, 0.19f, 0.19f);
 	new CDummy(&mF15, 8.0f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);

@@ -4,7 +4,7 @@
 #include"CFire.h"
 #include"CSceneGameF22.h"
 //敵の外部変数を呼ぶ
-extern CEnemyStandard*Enemy;
+extern CEnemyStandard*EnemySD;
 //ファイアの外部変数を呼ぶ
 extern CFire *f;
 #define LIFE 600
@@ -23,7 +23,7 @@ void CMissileStandard::Update() {
 	CVector vDir(mPosition.mX, 10, mPosition.mZ); //ミサイル方向ベクトル
 	//vPos = vPos.getRotationTowards(vDir);//ミサイル座標更新
 
-	CEnemyStandard*tenemy = Enemy;//敵の座標を持たせる
+	CEnemyStandard*tenemy = EnemySD;//敵の座標を持たせる
 	CVector vTargetPos = tenemy->mPosition - mPosition;//ターゲット座標
 	//CVector vtargetppos = CPlayer::mpPlayer->mPosition - mPosition;
 	float missile = vPos.dot(vTargetPos);//ミサイル

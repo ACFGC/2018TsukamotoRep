@@ -25,28 +25,29 @@ void CMissile::Update() {
 	CVector vDir(mPosition.mX, 10, mPosition.mZ); //ミサイル方向ベクトル
 	//vPos = vPos.getRotationTowards(vDir);//ミサイル座標更新
 
-	CEnemy*tenemy = Enemy;//敵の座標を持たせる
-	CVector vTargetPos = tenemy->mPosition - mPosition;//ターゲット座標
-	//CVector vtargetppos = CPlayer::mpPlayer->mPosition - mPosition;
-	float missile = vPos.dot(vTargetPos);//ミサイル
-	//ミサイル追尾処理
-	if (missile > tenemy->mPosition.mX){
-		//mRotation.mY += 1;
-		mMatrixRotation = mMatrixRotation*CMatrix().RotateY(1);
-	}
-	else if (missile < tenemy->mPosition.mX){
-		//mRotation.mY -= 1;
-		mMatrixRotation = mMatrixRotation*CMatrix().RotateY(-1);
-	}
-	float missileX = vPosX.dot(vTargetPos);
-	//ミサイル追尾処理
-	if (missileX > tenemy->mPosition.mY){
-		//mRotation.mY += 1;
-		mMatrixRotation = mMatrixRotation*CMatrix().RotateX(-1);
-	}
-	else if (missileX < tenemy->mPosition.mY){
-		//mRotation.mY -= 1;
-		mMatrixRotation = mMatrixRotation*CMatrix().RotateX(1);
+	if (tenemy != 0){
+		CVector vTargetPos = tenemy->mPosition - mPosition;//ターゲット座標
+		//CVector vtargetppos = CPlayer::mpPlayer->mPosition - mPosition;
+		float missile = vPos.dot(vTargetPos);//ミサイル
+		//ミサイル追尾処理
+		if (missile > tenemy->mPosition.mX){
+			//mRotation.mY += 1;
+			mMatrixRotation = mMatrixRotation*CMatrix().RotateY(1);
+		}
+		else if (missile < tenemy->mPosition.mX){
+			//mRotation.mY -= 1;
+			mMatrixRotation = mMatrixRotation*CMatrix().RotateY(-1);
+		}
+		float missileX = vPosX.dot(vTargetPos);
+		//ミサイル追尾処理
+		if (missileX > tenemy->mPosition.mY){
+			//mRotation.mY += 1;
+			mMatrixRotation = mMatrixRotation*CMatrix().RotateX(-1);
+		}
+		else if (missileX < tenemy->mPosition.mY){
+			//mRotation.mY -= 1;
+			mMatrixRotation = mMatrixRotation*CMatrix().RotateX(1);
+		}
 	}
 	//ミサイル追尾処理時間
 	if (Time > 0){

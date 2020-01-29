@@ -9,7 +9,7 @@ extern CTaskManager TaskManager;
 //コリジョンマネージャーの外部変数を呼ぶ
 extern CCollisionManager CollisionManager;
 //敵の外部変数を作る
- CEnemyStandard*Enemy;
+ CEnemyStandard*EnemySD;
 //テキストの外部変数を呼ぶ
 extern CText*mText;
 //時間
@@ -24,8 +24,8 @@ void CTutorialStandard::Init() {
 	mC5.Load("C5.obj", "C5.mtl");
 	//モデル割り当て
 	mPlayer.Init(&mModel, 0.0f, 5.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	Enemy = new CEnemyStandard(&mC5, 0.0f, 5.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	Enemy = new CEnemyStandard(&mC5, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	EnemySD = new CEnemyStandard(&mC5, 0.0f, 5.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	EnemySD = new CEnemyStandard(&mC5, 0.0f, 17.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 }
 
 void CTutorialStandard::Update() {

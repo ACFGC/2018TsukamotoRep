@@ -66,7 +66,7 @@ void CRadar::SetDiffuse(float r, float g, float b, float a) {
 }
 
 void CRadar::Update() {
-	Enemy = 0;
+	mptarget = 0;
 	//行列更新
 	mMatrix = mMatrix.Scale(mScale.mX, mScale.mY, mScale.mZ)*
 		mMatrixRotation*mMatrix.Translate(mPosition.mX, mPosition.mY, mPosition.mZ);
@@ -96,8 +96,10 @@ void CRadar::Render() {
 		glEnable(GL_BLEND);
 		//ブレンド方法を指定
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		//mMatrix = Enemy->mMatrix.Translate(Enemy->mPosition.mX, Enemy->mPosition.mY, Enemy->mPosition.mZ);
 		mBox.Render(CMatrix().Translate(Enemy->mPosition.mX, Enemy->mPosition.mY, Enemy->mPosition.mZ));
+
 		//アルファブレンドを無効
 		glDisable(GL_BLEND);
 		//テクスチャを無効
@@ -114,10 +116,6 @@ void CRadar::Collision(CCollider *m, CCollider *y) {
 		case EENEMY:
 			mptarget = (CEnemy*)y->mpParent;
 			Enemy = mptarget;
-			CFire *f = new CFire();
-			f->mPosition = y->mpParent->mPosition;
-			f->SetTexture("fire.tga");
-			TaskManager.Add(f);
 			//自分を消す
 //			m->mpParent->mEnabled = false;
 			//当たった相手を消す
