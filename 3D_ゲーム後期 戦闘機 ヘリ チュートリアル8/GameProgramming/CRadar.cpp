@@ -67,6 +67,7 @@ void CRadar::SetDiffuse(float r, float g, float b, float a) {
 
 void CRadar::Update() {
 	mptarget = 0;
+	Enemy = 0;
 	//çsóÒçXêV
 	mMatrix = mMatrix.Scale(mScale.mX, mScale.mY, mScale.mZ)*
 		mMatrixRotation*mMatrix.Translate(mPosition.mX, mPosition.mY, mPosition.mZ);

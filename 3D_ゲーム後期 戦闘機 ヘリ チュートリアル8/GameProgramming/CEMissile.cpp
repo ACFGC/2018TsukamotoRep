@@ -125,6 +125,7 @@ void CEMissile::Collision(CCollider *m, CCollider *y) {
 		case EPLAYER:
 			f = new CFire();
 			f->mPosition = y->mpParent->mPosition;
+			f->mScale = f->mScale* CMatrix().Scale(5.0f, 5.0f, 5.0f);
 			f->SetTexture("fire.tga");
 			TaskManager.Add(f);
 			//©•ª‚ğÁ‚·
@@ -137,6 +138,7 @@ void CEMissile::Collision(CCollider *m, CCollider *y) {
 		case EFLARE:
 			f = new CFire();
 			f->mPosition = y->mpParent->mPosition;
+			f->mScale = f->mScale* CMatrix().Scale(3.0f, 3.0f, 3.0f);
 			f->SetTexture("fire.tga");
 			TaskManager.Add(f);
 			//©•ª‚ğÁ‚·

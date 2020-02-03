@@ -25,7 +25,7 @@ CEnemy::CEnemy(CModel *model, float px, float py, float pz, float rx, float ry, 
 	Init(model, px, py, pz, rx, ry, rz, sx, sy, sz);
 	TaskManager.Add(this);
 	mCollider.mpParent = this;
-	mCollider.mRadius = 1.0f;
+	mCollider.mRadius = 10.0f;
 	//フレアインターバル設定
 	mEFlareInterval = EFLAREINTERVAL_E;
 	//タグを設定
@@ -131,7 +131,7 @@ void CEnemy::Collision(CCollider *m, CCollider *y) {
 		//当たった相手のタグがEPLAYERBULLETなら
 		case EPLAYERBULLET:
 			HP.HP -= 1.0f;
-			if (HP.HP <= 0.0f){
+			/*if (HP.HP <= 0.0f){
 				f = new CFire();
 				f->mPosition = y->mpParent->mPosition;
 				f->SetTexture("fire.tga");
@@ -140,7 +140,7 @@ void CEnemy::Collision(CCollider *m, CCollider *y) {
 				m->mpParent->mEnabled = false;
 				//当たった相手を消す
 				//y->mpParent->mEnabled = false;
-			}
+			}*/
 			break;
 		}
 	}

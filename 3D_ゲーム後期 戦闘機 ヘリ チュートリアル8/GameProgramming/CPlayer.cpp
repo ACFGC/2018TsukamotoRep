@@ -54,7 +54,26 @@ void CPlayer::Update() {
 	CVector vz = CVector(0.0f, 0.0f, 1.0f)*mMatrixRotation;
 	CVector vx = CVector(1.0f, 0.0f, 0.0f)*mMatrixRotation;
 	CVector vy = CVector(0.0f, 1.0f, 0.0f)*mMatrixRotation;
-
+	if (EDESTORY){
+		mpPlayer = false;
+	}
+	//HP‚ª0‚É‚È‚Á‚½‚ç‰ñ‚é
+	if (HP.HP <= 0.0f){
+		mPosition = CVector(0.0f, -3.0f, 3.0f) * mMatrix;
+		//mz.Axis(-2.0f, vz.mX, vz.mY, vz.mZ);
+		//mx.Axis(1.0f, vx.mX, vx.mY, vx.mZ);
+		f = new CFire();
+		f->mPosition = mpPlayer->mPosition;
+		f->mScale = f->mScale * CMatrix().Scale(5.0f, 5.0f, 5.0f);
+		f->SetTexture("fire.tga");
+		TaskManager.Add(f);
+		if (mPosition.mY <= 0){
+			mpPlayer->mEnabled = false;
+		}
+		/*if (vx.mX > 30){
+			vx.mX = 30;
+		}*/
+	}
 	//ƒ[ƒ‹
 	//¶ƒ[ƒ‹
 	if (CKey::Push('A')){
@@ -203,7 +222,7 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 			f->mPosition = y->mpParent->mPosition;
 			f->SetTexture("fire.tga");
 			TaskManager.Add(f);*/
-			HP.HP -= 40.0f;
+			HP.HP -= 10.0f;
 			if (HP.HP <= 0.0f){
 				mState = EDESTORY;
 				if (EDESTORY){
@@ -219,7 +238,8 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 		/*case EPLAYERBULLET:
 			f = new CFire();
 			f->SetSize(0.5f, 0.5f);
-			f->mPosition = y->mpParent->mPosition;
+			f->mPosition = y->mpParent->mPosition + f->mPosition* CMatrix().Translate(-1.0f, 0.0f, 0.0f);
+			f->mMatrixRotation = mMatrixRotation;
 			f->SetTexture("Autocannon.tga");
 			TaskManager.Add(f);
 			break;*/

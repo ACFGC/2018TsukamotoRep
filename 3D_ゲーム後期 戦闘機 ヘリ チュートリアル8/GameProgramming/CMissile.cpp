@@ -101,6 +101,7 @@ void CMissile::Collision(CCollider *m, CCollider *y) {
 		case EENEMY:
 			f = new CFire();
 			f->mPosition = y->mpParent->mPosition;
+			f->mScale =f->mScale* CMatrix().Scale(10.0f, 10.0f, 10.0f);
 			f->SetTexture("fire.tga");
 			TaskManager.Add(f);
 			//©•ª‚ğÁ‚·
