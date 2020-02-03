@@ -61,12 +61,7 @@ void CPlayer::Update() {
 	if (HP.HP <= 0.0f){
 		mPosition = CVector(0.0f, -3.0f, 3.0f) * mMatrix;
 		//mz.Axis(-2.0f, vz.mX, vz.mY, vz.mZ);
-		//mx.Axis(1.0f, vx.mX, vx.mY, vx.mZ);
-		f = new CFire();
-		f->mPosition = mpPlayer->mPosition;
-		f->mScale = f->mScale * CMatrix().Scale(5.0f, 5.0f, 5.0f);
-		f->SetTexture("fire.tga");
-		TaskManager.Add(f);
+		//mx.Axis(1.0f, -10, 0, 0);
 		if (mPosition.mY <= 0){
 			mpPlayer->mEnabled = false;
 		}
@@ -225,6 +220,11 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 			HP.HP -= 10.0f;
 			if (HP.HP <= 0.0f){
 				mState = EDESTORY;
+				f = new CFire();
+				f->mPosition = y->mpParent->mPosition;
+				f->mScale = f->mScale * CMatrix().Scale(5.0f, 5.0f, 5.0f);
+				f->SetTexture("fire.tga");
+				TaskManager.Add(f);
 				if (EDESTORY){
 					m->mpParent->mEnabled = false;
 					mpPlayer->mEnabled = false;
