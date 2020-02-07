@@ -40,14 +40,14 @@ CPlayer::~CPlayer() {
 
 void CPlayer::Update() {
 	//戦闘機操作処理
-	//mPosition = CVector(0.0f, 0.0f, 1.5f) * mMatrix;
+	mPosition = CVector(0.0f, 0.0f, 3.5f) * mMatrix;
 	//前進 (スロットルアップ)
 	if (CKey::Push('I')) {
-		mPosition = CVector(0.0f, 0.0f, 3.0f) * mMatrix;
+		mPosition = CVector(0.0f, 0.0f, 5.0f) * mMatrix;
 	}
 	//後進 (スロットルダウン)
 	if (CKey::Push('K')) {
-		mPosition = CVector(0.0f, 0.0f, -2.0f) * mMatrix;
+		mPosition = CVector(0.0f, 0.0f, 0.1f) * mMatrix;
 	}
 	//任意軸回転での操作
 	CMatrix mx, mz, my;
@@ -58,25 +58,32 @@ void CPlayer::Update() {
 		mpPlayer = false;
 	}
 	//HPが0になったら回る
-	if (HP.HP <= 0.0f){
+	/*if (HP.HP <= 0.0f){
 		mPosition = CVector(0.0f, -3.0f, 3.0f) * mMatrix;
 		//mz.Axis(-2.0f, vz.mX, vz.mY, vz.mZ);
-		//mx.Axis(1.0f, -10, 0, 0);
 		if (mPosition.mY <= 0){
 			mpPlayer->mEnabled = false;
 		}
-		/*if (vx.mX > 30){
+		mRotation.mX += 5;
+		if (mRotation.mX > 30){
+			mRotation.mX = 30;
+		}
+		mRotation.mZ += 5;
+		CCharacter::Update();
+		if (vx.mX > 30){
 			vx.mX = 30;
-		}*/
-	}
+		}
+	}*/
 	//ロール
 	//左ロール
 	if (CKey::Push('A')){
 		mz.Axis(-2.0f,vz.mX, vz.mY, vz.mZ);
+		mPosition = CVector(0.0f, 0.0f, 0.1f) * mMatrix;
 	}
 	//右ロール
 	if (CKey::Push('D')){
 		mz.Axis(2.0f,vz.mX, vz.mY, vz.mZ);
+		mPosition = CVector(0.0f, 0.0f, 0.1f) * mMatrix;
 	}
 
 	//ピッチ
@@ -192,6 +199,7 @@ void CPlayer::Update() {
 			TaskManager.Add(Flare);
 		}
 	}
+	//レーダーの設定
 	mRadar.mPosition = mPosition + CVector(0.0f, 0.0f, 10.0f);
 	mRadar.Update();
 	/*if (CKey::Push('Q')){
@@ -203,6 +211,9 @@ void CPlayer::Update() {
 	}*/
 	//mHpBar.Update();
 	//CCharacter::Update();
+	if (HP.HP <= 0.0f){
+		mpPlayer->mEnabled = false;
+	}
 }
 void CPlayer::Render(){
 	CCharacter::Render();
@@ -217,7 +228,7 @@ void CPlayer::Collision(CCollider *m, CCollider *y) {
 			f->mPosition = y->mpParent->mPosition;
 			f->SetTexture("fire.tga");
 			TaskManager.Add(f);*/
-			HP.HP -= 10.0f;
+			HP.HP -= 100.0f;
 			if (HP.HP <= 0.0f){
 				mState = EDESTORY;
 				f = new CFire();

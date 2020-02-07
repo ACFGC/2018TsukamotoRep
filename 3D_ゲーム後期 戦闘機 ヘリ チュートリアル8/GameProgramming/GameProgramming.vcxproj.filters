@@ -186,6 +186,9 @@
     <ClCompile Include="CSceneGameF15SD.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CBuilding.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Update.h">
@@ -375,6 +378,9 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CSceneGameF15SD.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CBuilding.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>

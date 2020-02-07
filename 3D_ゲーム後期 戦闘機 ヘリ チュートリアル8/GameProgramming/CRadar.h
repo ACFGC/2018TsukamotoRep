@@ -5,7 +5,7 @@
 #include"CBox.h"
 #include"CSphereCollider.h"
 #include "CEnemy.h"
-
+//ƒŒ[ƒ_[
 class CRadar :public CCharacter{
 public:
 	CTriangle mT[2];

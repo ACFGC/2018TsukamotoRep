@@ -107,6 +107,21 @@ void CEnemy::Update() {
 		em->mRotation = mRotation;
 		TaskManager.Add(em);
 	}
+	if (HP.HP <= 0.0f){
+		f = new CFire();
+		f->mPosition = mPosition;
+		f->SetTexture("fire.tga");
+		TaskManager.Add(f);
+		mPosition = CVector(0.0f, -0.5f, 1.0f) * mMatrix;
+		if (mPosition.mY <= 0){
+			mEnabled = false;
+		}
+		mRotation.mX++;
+		if (mRotation.mX > 30){
+			mRotation.mX = 30;
+		}
+		mRotation.mZ++;
+	}
 	CCharacter::Update();
 }
 
@@ -123,7 +138,7 @@ void CEnemy::Collision(CCollider *m, CCollider *y) {
 				f->SetTexture("fire.tga");
 				TaskManager.Add(f);
 				//Ž©•ª‚ðÁ‚·
-				m->mpParent->mEnabled = false;
+				//m->mpParent->mEnabled = false;
 				//“–‚½‚Á‚½‘ŠŽè‚ðÁ‚·
 				//y->mpParent->mEnabled = false;
 			}

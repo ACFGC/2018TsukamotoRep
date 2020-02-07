@@ -3,6 +3,7 @@
 #include"CKey.h"
 #include"CEnemy.h"
 #include<math.h>
+#include"CBuilding.h"
 //タスクマネージャーの外部変数を呼ぶ
 extern CTaskManager TaskManager;
 //コリジョンマネージャーの外部変数を呼ぶ
@@ -11,6 +12,8 @@ extern CCollisionManager CollisionManager;
 extern CEnemy*Enemy;
 //テキストの外部変数を呼ぶ
 extern CText*mText;
+//ビルの外部変数を作る
+CBuilding*mBuild;
 //時間
 //int mTime = 30 * 60;
 #define Time 100
@@ -24,7 +27,19 @@ void CTutorial::Init() {
 	//モデル割り当て
 	mPlayer.Init(&mModel, 0.0f, 5.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
 	//Enemy = new CEnemy(&mC5, 90.0f, 5.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
-	Enemy = new CEnemy(&mC5, 0.0f, 5.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	Enemy = new CEnemy(&mC5, 0.0f, 50.0f, 6.0f, 0.0f, 0.0f, 0.0f, 0.2f, 0.2f, 0.2f);
+	mBuild = new CBuilding();
+	mBuild->Set(1.0f, 0.0f, 0.0f, 10.5f, 10.0f, 10.0f);
+	mBuild->SetDiffuse(1.0f, 1.0f, 0.0f, 1.0f);
+	TaskManager.Add(mBuild);
+	mBuild = new CBuilding();
+	mBuild->Set(30.0f, 0.0f, 0.0f, 5.5f, 10.0f, 10.0f);
+	mBuild->SetDiffuse(1.0f, 1.0f, 0.0f, 1.0f);
+	TaskManager.Add(mBuild);
+	mBuild = new CBuilding();
+	mBuild->Set(20.0f, 10.0f, 0.0f, 10.5f, 5.5f, 10.0f);
+	mBuild->SetDiffuse(1.0f, 1.0f, 0.0f, 1.0f);
+	TaskManager.Add(mBuild);
 }
 
 void CTutorial::Update() {
